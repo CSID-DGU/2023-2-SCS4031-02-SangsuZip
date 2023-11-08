@@ -1,10 +1,10 @@
-import * as express from "express"
+import express from "express";
 
 class App {
   public application : express.Application;
 
   constructor(){
-    this.application = express.default();
+    this.application = express();
   }
 }
 
