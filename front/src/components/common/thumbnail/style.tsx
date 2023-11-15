@@ -6,6 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   width: 20rem;
   height: 27.625rem;
+  cursor: pointer;
 `;
 
 export const Image = styled.img`
