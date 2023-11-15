@@ -16,11 +16,11 @@ export const Image = styled.img`
 
 export const ContentContainer = styled.div`
   padding: 1.5rem 1rem;
+  height: 15.125rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
-  gap: 0.5rem;
   border: 1px solid ${theme.color.gray40};
   border-top: none;
   border-radius: 0 0 5px 5px;
@@ -50,13 +50,17 @@ export const Content = styled.p`
 `;
 
 export const Author = styled.p`
-  ${theme.fonts.b14Regular};
+  width: 100%;
+  ${theme.fonts.b12Regular};
   color: ${theme.color.black};
+  text-align: end;
   align-self: flex-end;
+  padding-top: 1rem;
+  border-top: 1px solid ${theme.color.gray40};
 `;
 
 export const Date = styled.p`
-  ${theme.fonts.b14Regular};
+  ${theme.fonts.b12Regular};
   color: ${theme.color.black};
   align-self: flex-end;
 `;
