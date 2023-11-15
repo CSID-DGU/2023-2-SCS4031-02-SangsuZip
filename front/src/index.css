@@ -3,17 +3,17 @@
 
 @font-face {
   font-family: "PretendardBold";
-  src: url("/fonts/Pretendard-Bold.ttf") format("truetype");
+  src: url("/assets/fonts/Pretendard-Bold.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "PretendardRegular";
-  src: url("/fonts/Pretendard-Regular.ttf") format("truetype");
+  src: url("/assets/fonts/Pretendard-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "PretendardMedium";
-  src: url("/fonts/Pretendard-Medium.ttf") format("truetype");
+  src: url("/assets/fonts/Pretendard-Medium.ttf") format("truetype");
 }
 
 body {
