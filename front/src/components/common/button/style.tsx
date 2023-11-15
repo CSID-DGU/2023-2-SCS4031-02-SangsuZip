@@ -10,7 +10,7 @@ export const Container = styled.button<ButtonProps>`
   background-color: ${(props) => props.$backgroundColor};
   color: ${(props) => props.$color};
   border: 1px solid ${(props) => props.$borderColor};
-  border-radius: ${(props) => (props.hasBorder ? "5px" : "0")};
+  border-radius: ${(props) => (props.$hasBorder ? "5px" : "0")};
   ${fonts.button16Medium}
 
   &:hover {

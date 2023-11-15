@@ -5,6 +5,6 @@ export type ButtonProps = {
   $borderColor: string;
   $backgroundColor: string;
   text?: string;
-  hasBorder?: boolean;
+  $hasBorder?: boolean;
   onClick: (e?: React.MouseEvent<HTMLButtonElement>) => void;
 };

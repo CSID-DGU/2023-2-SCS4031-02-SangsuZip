@@ -9,7 +9,7 @@ function Button({
   $borderColor,
   $color,
   text,
-  hasBorder,
+  $hasBorder,
   onClick,
 }: ButtonProps) {
   return (
@@ -19,7 +19,7 @@ function Button({
       $backgroundColor={$backgroundColor}
       $borderColor={$borderColor}
       $color={$color}
-      hasBorder={hasBorder}
+      $hasBorder={$hasBorder}
       onClick={onClick}
     >
       {text}
