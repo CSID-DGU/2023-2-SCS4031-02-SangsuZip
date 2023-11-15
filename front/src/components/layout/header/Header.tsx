@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Button from "../../common/button/Button";
-import { ButtonContainer, Container } from "./style";
+import * as S from "./style";
 import theme from "../../../styles/theme";
 
 function Header() {
@@ -24,9 +24,9 @@ function Header() {
   }, [prevScrollPos, visible, handleScroll]);
 
   return (
-    <Container $visible={visible}>
+    <S.Container $visible={visible}>
       <p>Devlog</p>
-      <ButtonContainer>
+      <S.ButtonContainer>
         <Button
           $width={5}
           $height={2}
@@ -60,8 +60,8 @@ function Header() {
             console.log("zz");
           }}
         />
-      </ButtonContainer>
-    </Container>
+      </S.ButtonContainer>
+    </S.Container>
   );
 }
 

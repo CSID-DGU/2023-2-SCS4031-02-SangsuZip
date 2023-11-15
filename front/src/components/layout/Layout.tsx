@@ -11,7 +11,6 @@ function Layout({ children }: LayoutProps) {
     <Wrapper>
       <Header />
       <Content>{children}</Content>
-      <Footer />
     </Wrapper>
   );
 }
