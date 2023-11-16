@@ -1,0 +1,3 @@
+[submodule "serverless/recommend-lambda/serverless/recommend-lambda/sangsuzip-submoudles"]
+	path = serverless/recommend-lambda/serverless/recommend-lambda/sangsuzip-submoudles
+	url = https://github.com/kwan2/sangsuzip-submoudles.git
