@@ -1,0 +1,10 @@
+{
+    "dev": {
+        "aws_region": "ap-northeast-2",
+        "app_function" : "app.app",
+        // "profile_name": "sangsuzip",
+        "project_name": "recommend-lambda",
+        "runtime": "python3.11",
+        "s3_bucket": "zappa-xxfsa0s58"
+    }
+}
