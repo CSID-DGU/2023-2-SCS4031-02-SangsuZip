@@ -8,6 +8,7 @@ function Button({
   $backgroundColor,
   $borderColor,
   $color,
+  $fontSize,
   text,
   $hasBorder,
   onClick,
@@ -20,6 +21,7 @@ function Button({
       $borderColor={$borderColor}
       $color={$color}
       $hasBorder={$hasBorder}
+      $fontSize={$fontSize}
       onClick={onClick}
     >
       {text}
