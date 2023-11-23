@@ -42,6 +42,11 @@ const fonts = {
     fontSize: "18px",
   },
 
+  h16Bold: {
+    fontFamily: "PretendardBold",
+    fontSize: "16px",
+  },
+
   t20Medium: {
     fontFamily: "PretendardMedium",
     fontSize: "20px",
