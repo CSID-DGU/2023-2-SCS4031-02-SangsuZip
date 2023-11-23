@@ -4,9 +4,9 @@ import theme from "../../../styles/theme";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  cursor: pointer;
   width: 20rem;
   height: 27.625rem;
-  cursor: pointer;
 `;
 
 export const Image = styled.img`
@@ -48,6 +48,20 @@ export const Content = styled.p`
   ${theme.fonts.t14Medium};
   color: ${theme.color.black};
   margin-bottom: 1rem;
+`;
+
+export const RecommendTagContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  align-items: center;
+  ${theme.fonts.t12Medium};
+  color: ${theme.color.point2};
+`;
+
+export const RecommendTag = styled.p`
+  ${theme.fonts.t12Medium};
+  color: ${theme.color.point2};
 `;
 
 export const Author = styled.p`

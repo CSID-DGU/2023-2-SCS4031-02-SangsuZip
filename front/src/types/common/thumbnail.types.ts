@@ -5,4 +5,5 @@ export type ThumbnailProps = {
   content: string;
   author: string;
   date: string;
+  recommendTags: string[];
 };

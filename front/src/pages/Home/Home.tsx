@@ -43,6 +43,7 @@ function Home() {
             tags={["애플", "감성", "아이폰"]}
             author="정원호"
             date="2021.10.18"
+            recommendTags={["스티브잡스", "아이패드", "맥북"]}
           />
           <Thumbnail
             key={2}
@@ -52,6 +53,7 @@ function Home() {
             tags={["애플", "감성", "아이폰"]}
             author="정원호"
             date="2021.10.18"
+            recommendTags={["스티브잡스", "아이패드", "맥북"]}
           />
           <Thumbnail
             key={3}
@@ -61,6 +63,7 @@ function Home() {
             tags={["애플", "감성", "아이폰"]}
             author="정원호"
             date="2021.10.18"
+            recommendTags={["스티브잡스", "아이패드", "맥북"]}
           />
           <Thumbnail
             key={4}
@@ -70,6 +73,7 @@ function Home() {
             tags={["애플", "감성", "아이폰"]}
             author="정원호"
             date="2021.10.18"
+            recommendTags={["스티브잡스", "아이패드", "맥북"]}
           />
         </S.ThumbnailContainer>
       </S.FeedContainer>
