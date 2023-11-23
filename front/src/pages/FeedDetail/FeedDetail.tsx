@@ -5,9 +5,6 @@ import Feed from "../../components/Feed/Feed";
 function FeedDetail() {
   return (
     <S.Container>
-      <S.TagContainer>
-        <S.TagListTitle>Tag List</S.TagListTitle>
-      </S.TagContainer>
       <S.FeedContainer>
         <Feed />
       </S.FeedContainer>
