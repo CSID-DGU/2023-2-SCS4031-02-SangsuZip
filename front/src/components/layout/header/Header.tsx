@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import Button from "../../common/button/Button";
 import * as S from "./style";
 import theme from "../../../styles/theme";
+import { useNavigate } from "react-router";
 
 function Header() {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
+  const navigate = useNavigate();
 
   const handleScroll = () => {
     const currentScrollPos = window.scrollY;
@@ -45,9 +47,7 @@ function Header() {
           $backgroundColor="white"
           $color={theme.color.point1}
           text="새 글 작성"
-          onClick={() => {
-            console.log("zz");
-          }}
+          onClick={() => navigate("/write")}
         />
         <Button
           $width={5}
