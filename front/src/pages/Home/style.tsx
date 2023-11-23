@@ -61,9 +61,14 @@ export const ThumbnailContainer = styled.div`
   padding: 1.5rem 1.5rem;
   display: flex;
   justify-content: space-between;
+  align-self: normal;
   gap: 1.5rem;
   flex-wrap: wrap;
   width: 100%;
   background-color: white;
   border-radius: 5px;
+
+  @media (max-width: 890px) {
+    justify-content: center;
+  }
 `;
