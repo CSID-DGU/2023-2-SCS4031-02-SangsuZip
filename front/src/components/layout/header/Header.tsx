@@ -27,7 +27,7 @@ function Header() {
 
   return (
     <S.Container $visible={visible}>
-      <p>Devlog</p>
+      <S.Logo onClick={() => navigate("/")}>Devlog</S.Logo>
       <S.ButtonContainer>
         <Button
           $width={5}

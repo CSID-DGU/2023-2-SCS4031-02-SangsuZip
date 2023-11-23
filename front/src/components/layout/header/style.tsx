@@ -17,6 +17,12 @@ export const Container = styled.div<{ $visible: boolean }>`
   z-index: 99;
 `;
 
+export const Logo = styled.p`
+  color: ${color.point1};
+  ${theme.fonts.h24Bold};
+  cursor: pointer;
+`;
+
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
