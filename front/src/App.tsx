@@ -6,6 +6,7 @@ import theme from "./styles/theme.ts";
 import Layout from "./components/layout/Layout.tsx";
 import Home from "./pages/Home/Home.tsx";
 import Write from "./pages/Write/Write.tsx";
+import FeedDetail from "./pages/FeedDetail/FeedDetail.tsx";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/write" element={<Write />} />
+            <Route path="/feed/:userId/:feedId" element={<FeedDetail />} />
           </Routes>
         </Layout>
       </BrowserRouter>
