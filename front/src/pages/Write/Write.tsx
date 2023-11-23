@@ -1,14 +1,16 @@
-import { useCallback, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import MDEditor from "@uiw/react-md-editor";
 import * as S from "./style";
 import Button from "../../components/common/button/Button";
 import theme from "../../styles/theme";
+import TagModal from "../../components/TagModal/TagModal";
 
 function Write() {
   const [value, setValue] = useState<string | undefined>();
   const [hashtag, setHashtag] = useState<string | "">("");
   const [hashArr, setHashArr] = useState<string[] | []>([]);
   const [title, setTitle] = useState<string | "">("");
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const onChangeHashTag = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHashtag(e.target.value);
@@ -60,60 +62,72 @@ function Write() {
     [hashArr, hashtag]
   );
 
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isModalOpen]);
+
   return (
-    <S.Container>
-      <S.TopContainer>
-        <S.TitleContainer>
-          <S.Title
-            placeholder="제목을 입력해주세요."
-            type="text"
-            value={title}
-            onChange={onChangeTitle}
-          />
-          <S.TagContainer>
-            <S.EnteredTag className="hashArr"></S.EnteredTag>
-            <S.TagInput
-              placeholder="태그를 입력해주세요."
+    <Fragment>
+      <S.Container>
+        <S.TopContainer>
+          <S.TitleContainer>
+            <S.Title
+              placeholder="제목을 입력해주세요."
               type="text"
-              value={hashtag}
-              onChange={onChangeHashTag}
-              onKeyUp={onKeyUpHandler}
+              value={title}
+              onChange={onChangeTitle}
             />
-          </S.TagContainer>
-        </S.TitleContainer>
-        <S.ButtonContainer>
-          <Button
-            $width={5}
-            $height={2}
-            text="임시저장"
-            $hasBorder={true}
-            $backgroundColor={theme.color.gray40}
-            $borderColor={theme.color.gray40}
-            $color={theme.color.gray80}
-            onClick={() => {}}
+            <S.TagContainer>
+              <S.EnteredTag className="hashArr"></S.EnteredTag>
+              <S.TagInput
+                placeholder="태그를 입력해주세요."
+                type="text"
+                value={hashtag}
+                onChange={onChangeHashTag}
+                onKeyUp={onKeyUpHandler}
+              />
+            </S.TagContainer>
+          </S.TitleContainer>
+          <S.ButtonContainer>
+            <Button
+              $width={5}
+              $height={2}
+              text="임시저장"
+              $hasBorder={true}
+              $backgroundColor={theme.color.gray40}
+              $borderColor={theme.color.gray40}
+              $color={theme.color.gray80}
+              onClick={() => {}}
+            />
+            <Button
+              $width={5}
+              $height={2}
+              text="업로드"
+              $hasBorder={true}
+              $backgroundColor={theme.color.point1}
+              $borderColor={theme.color.point1}
+              $color="white"
+              onClick={() => setIsModalOpen(true)}
+            />
+          </S.ButtonContainer>
+        </S.TopContainer>
+        <S.EditorContainer>
+          <MDEditor
+            data-color-mode="light"
+            height={"100vh"}
+            value={value}
+            placeholder="내용을 입력해주세요!"
+            onChange={setValue}
           />
-          <Button
-            $width={5}
-            $height={2}
-            text="업로드"
-            $hasBorder={true}
-            $backgroundColor={theme.color.point1}
-            $borderColor={theme.color.point1}
-            $color="white"
-            onClick={() => {}}
-          />
-        </S.ButtonContainer>
-      </S.TopContainer>
-      <S.EditorContainer>
-        <MDEditor
-          data-color-mode="light"
-          height={"100vh"}
-          value={value}
-          placeholder="내용을 입력해주세요!"
-          onChange={setValue}
-        />
-      </S.EditorContainer>
-    </S.Container>
+        </S.EditorContainer>
+      </S.Container>
+      {isModalOpen && <TagModal setIsModalOpen={setIsModalOpen} />}
+    </Fragment>
   );
 }
 

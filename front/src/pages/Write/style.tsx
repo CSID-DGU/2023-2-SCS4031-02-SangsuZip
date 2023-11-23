@@ -71,5 +71,6 @@ export const ButtonContainer = styled.div`
 
 export const EditorContainer = styled.div`
   width: 100vw;
+  height: 100vh;
   padding: 0 2rem;
 `;
