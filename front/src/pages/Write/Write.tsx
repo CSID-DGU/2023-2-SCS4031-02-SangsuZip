@@ -4,11 +4,12 @@ import * as S from "./style";
 import Button from "../../components/common/button/Button";
 import theme from "../../styles/theme";
 import TagModal from "../../components/TagModal/TagModal";
+import { writeFeed } from "../../api/feeds/writeFeed";
 
 function Write() {
-  const [value, setValue] = useState<string | undefined>();
+  const [value, setValue] = useState<string>();
   const [hashtag, setHashtag] = useState<string | "">("");
-  const [hashArr, setHashArr] = useState<string[] | []>([]);
+  const [hashArr, setHashArr] = useState<string[]>([]);
   const [title, setTitle] = useState<string | "">("");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -61,6 +62,20 @@ function Write() {
     },
     [hashArr, hashtag]
   );
+
+  const onSubmitHandler = () => {
+    const writeData = {
+      title,
+      contents: value!,
+      tags: hashArr!,
+      author: "656304f20baa7b3a7f392f9e",
+    };
+    writeFeed(writeData).then((res) => {
+      if (res.status === 201) {
+        setIsModalOpen(true);
+      }
+    });
+  };
 
   useEffect(() => {
     if (isModalOpen) {
