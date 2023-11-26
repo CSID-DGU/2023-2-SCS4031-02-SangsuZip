@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from 'mongoose';
 import cors from 'cors';
+import Api from './routes/Api'
 
 const app = express();
 const port = 4000;
@@ -22,6 +23,9 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions))
+
+// routes
+app.use('/', Api)
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`)
