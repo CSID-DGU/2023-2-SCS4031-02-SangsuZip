@@ -2,13 +2,14 @@ import express from "express";
 import mongoose from 'mongoose';
 import cors from 'cors';
 import Api from './routes/Api'
+import dotenv from 'dotenv'
 
 const app = express();
 const port = 4000;
 
 // mongodb 연결
-const mongoURI = 'mongodb+srv://parkracoon:pt1221@kangho.k4mc7hv.mongodb.net/?retryWrites=true&w=majority';
-mongoose.connect(mongoURI);
+dotenv.config()
+mongoose.connect(process.env.DATABASE || '');
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error: '));
