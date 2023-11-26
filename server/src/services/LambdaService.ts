@@ -1,7 +1,6 @@
 import dotenv from 'dotenv';
 import axios from 'axios';
 
-
 dotenv.config();
 
 export class LambdaService {
@@ -12,15 +11,21 @@ export class LambdaService {
                 content : content
             }
             const response = await axios.post(lambdaURL,body);
-            console.log(response.data);
+            const jsonString = response.data.body;
+            const cleanJsonString = jsonString.replace(/\\n|'/g, '');
+
+            const tmpJsonObj = JSON.parse(cleanJsonString)
+            
+            const jsonObj = JSON.parse(tmpJsonObj.message)
+            
+            console.log(jsonObj)
+            console.log(Object.keys(jsonObj))
 
             return response.data.body.message;
-        }catch(err){
-            // console.error(err);
+        } catch (err) {
+            console.error(err);
         }
 
         return null;
-       
     }
-
 }
