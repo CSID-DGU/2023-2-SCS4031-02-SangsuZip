@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import Feed from '../../models/Feed'
 import User from '../../models/User'
 
-export const write = async (req: Request, res: Response) => {
+export const writeFeed = async (req: Request, res: Response) => {
     try {
         const { title, tags, contents, author, createdAt } = req.body;
 
