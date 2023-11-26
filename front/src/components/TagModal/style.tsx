@@ -100,7 +100,7 @@ export const TagDescription = styled.p`
 export const FeedThumbnailContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-self: normal;
-  gap: 1rem;
+  gap: 5rem;
 `;
