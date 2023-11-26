@@ -9,7 +9,7 @@ const port = 4000;
 
 // mongodb 연결
 dotenv.config()
-mongoose.connect(process.env.DATABASE || '');
+mongoose.connect(process.env.DATABASE || ''); 
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error: '));
