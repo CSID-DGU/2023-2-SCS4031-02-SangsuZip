@@ -1,7 +1,11 @@
 import * as S from "./style";
 import ThumbnailSkeleton from "../ThumnailSkeleton/ThumbnailSkeleton";
 
-function TagModalSkeleton() {
+function TagModalSkeleton({
+  setIsModalOpen,
+}: {
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   return (
     <S.Container>
       <S.RecTagListContainer>
@@ -12,7 +16,7 @@ function TagModalSkeleton() {
         ))}
       </S.RecTagListContainer>
       <S.RecTagDescriptionContainer>
-        <S.CloseButton />
+        <S.CloseButton onClick={() => setIsModalOpen(false)} />
         <S.Description>
           작성해주신 태그 기반으로 추천드리는 다음 공부 주제입니다!
         </S.Description>
