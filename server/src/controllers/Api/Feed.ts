@@ -27,3 +27,17 @@ export const writeFeed = async (req: Request, res: Response) => {
         res.status(500).json({ error: 'Internal Server Error' })
     }
 }
+
+export const getFeeds = async (req: Request, res: Response) => {
+    try {
+        const { idx } = req.params
+        const sIdx = parseInt(idx, 10) * 21;
+
+        const feeds = await Feed.find().skip(sIdx).limit(21)
+
+        res.status(200).json(feeds);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
