@@ -1,17 +1,19 @@
 import express from "express";
+import mongoose from 'mongoose';
 
-class App {
-  public application : express.Application;
+const app = express();
+const port = 4000;
 
-  constructor(){
-    this.application = express();
-  }
-}
+// mongodb 연결
+const mongoURI = 'mongodb-connection-string';
+mongoose.connect(mongoURI);
 
-const app = new App().application;
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error: '));
+db.once('open', () => {
+  console.log('Connected to MongoDB');
+});
 
-app.get("/",(req : express.Request , res : express.Response) =>{
-  res.send("start");
-})
-
-app.listen(4000,()=>console.log("start"));
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`)
+});
