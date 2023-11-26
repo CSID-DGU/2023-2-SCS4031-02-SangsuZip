@@ -24,13 +24,16 @@ export const recommendGPT = async (req: Request, res: Response) => {
         lambdaService.invokeLambda(body)
             .then((result) => {
                 if(result === null) res.status(400).json({ error : 'error'});
-                else res.status(200).json({ result }); 
+                else res.status(200).json({ 
+                    body : result
+                }); 
             })
             .catch((error) => {
                 res.status(500).json({ error: 'Lambda error' });
             });
         
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
