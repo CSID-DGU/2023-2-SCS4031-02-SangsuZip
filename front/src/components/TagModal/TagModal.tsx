@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as S from "./style";
 import { createPortal } from "react-dom";
 import Thumbnail from "../common/thumbnail/Thumbnail";
+
 function TagModal({
   setIsModalOpen,
 }: {
@@ -43,30 +44,30 @@ function TagModal({
               key={1}
               imageURL="https://ssl.pstatic.net/melona/libs/1468/1468973/293be9cc746b178ba5ef_20231018174336732_1.jpg"
               title="애플에 대해 알아보자."
-              content="애플은 원래부터 멋에 특화되어 있는 브랜드이다. 따라서 /애플/이라는 단어는 감성을 자극하는 단어이다. "
+              contents="애플은 원래부터 멋에 특화되어 있는 브랜드이다. 따라서 /애플/이라는 단어는 감성을 자극하는 단어이다. "
               tags={["애플", "감성", "아이폰"]}
               author="정원호"
-              date="2021.10.18"
+              createdAt="2021.10.18T"
               recommendTags={["스티브잡스", "아이패드", "맥북"]}
             />
             <Thumbnail
               key={2}
               imageURL="https://ssl.pstatic.net/melona/libs/1468/1468973/293be9cc746b178ba5ef_20231018174336732_1.jpg"
               title="애플에 대해 알아보자."
-              content="애플은 원래부터 멋에 특화되어 있는 브랜드이다. 따라서 /애플/이라는 단어는 감성을 자극하는 단어이다. "
+              contents="애플은 원래부터 멋에 특화되어 있는 브랜드이다. 따라서 /애플/이라는 단어는 감성을 자극하는 단어이다. "
               tags={["애플", "감성", "아이폰"]}
               author="정원호"
-              date="2021.10.18"
+              createdAt="2021.10.18T"
               recommendTags={["스티브잡스", "아이패드", "맥북"]}
             />
             <Thumbnail
               key={3}
               imageURL="https://ssl.pstatic.net/melona/libs/1468/1468973/293be9cc746b178ba5ef_20231018174336732_1.jpg"
               title="애플에 대해 알아보자."
-              content="애플은 원래부터 멋에 특화되어 있는 브랜드이다. 따라서 /애플/이라는 단어는 감성을 자극하는 단어이다. "
+              contents="애플은 원래부터 멋에 특화되어 있는 브랜드이다. 따라서 /애플/이라는 단어는 감성을 자극하는 단어이다. "
               tags={["애플", "감성", "아이폰"]}
               author="정원호"
-              date="2021.10.18"
+              createdAt="2021.10.18T"
               recommendTags={["스티브잡스", "아이패드", "맥북"]}
             />
           </S.FeedThumbnailContainer>
