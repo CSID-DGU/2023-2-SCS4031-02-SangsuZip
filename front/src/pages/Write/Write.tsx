@@ -127,7 +127,7 @@ function Write() {
               $backgroundColor={theme.color.point1}
               $borderColor={theme.color.point1}
               $color="white"
-              onClick={() => setIsModalOpen(true)}
+              onClick={onSubmitHandler}
             />
           </S.ButtonContainer>
         </S.TopContainer>
@@ -141,7 +141,13 @@ function Write() {
           />
         </S.EditorContainer>
       </S.Container>
-      {isModalOpen && <TagModal setIsModalOpen={setIsModalOpen} />}
+      {isModalOpen && (
+        <TagModal
+          setIsModalOpen={setIsModalOpen}
+          value={value!}
+          hashArr={hashArr}
+        />
+      )}
     </Fragment>
   );
 }
