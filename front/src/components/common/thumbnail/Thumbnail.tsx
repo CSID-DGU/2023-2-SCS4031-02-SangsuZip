@@ -1,5 +1,5 @@
+import { ThumbnailProps } from "../../../types/common/Thumbnail.types";
 import * as S from "./style";
-import { ThumbnailProps } from "../../../types/common/thumbnail.types";
 
 function Thumbnail({
   imageURL,

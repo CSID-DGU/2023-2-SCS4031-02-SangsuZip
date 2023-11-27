@@ -1,5 +1,4 @@
-import React from "react";
-import { ButtonProps } from "../../../types/common/button.types";
+import { ButtonProps } from "../../../types/common/Button.types";
 import { Container } from "./style";
 
 function Button({

@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { ButtonProps } from "../../../types/common/button.types";
-import theme from "../../../styles/theme";
+import { ButtonProps } from "../../../types/common/Button.types";
 
 export const Container = styled.button<ButtonProps>`
   width: ${(props) => props.$width}rem;
