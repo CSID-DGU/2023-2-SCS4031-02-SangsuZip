@@ -5,7 +5,7 @@ import theme from "../../styles/theme";
 import * as S from "./style";
 import SearchIcon from "/assets/icons/SearchIcon.svg";
 import { getFeed } from "../../api/feeds/getFeed";
-import { ThumbnailProps } from "../../types/common/thumbnail.types";
+import { ThumbnailProps } from "../../types/common/Thumbnail.types";
 
 function Home() {
   const [feeds, setFeeds] = useState<ThumbnailProps[]>();
