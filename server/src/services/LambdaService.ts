@@ -27,7 +27,7 @@ export class LambdaService {
                 .exec()
                 .then(beforeFeed => {
                     if(beforeFeed){
-                        beforeFeed.recommendedTags = beforeFeed.recommendedTags.concat(recommendedTags);
+                        beforeFeed.recommendedTags = recommendedTags;
                         beforeFeed.save();
                     }
                 })
