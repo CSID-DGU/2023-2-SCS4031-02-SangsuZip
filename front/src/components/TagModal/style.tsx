@@ -43,7 +43,8 @@ export const TagButton = styled.button<{ $isSelected: boolean }>`
     props.$isSelected
       ? "box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25)"
       : "none"};
-  ${theme.fonts.h18Bold};
+  ${theme.fonts.h16Bold};
+  overflow-y: scroll;
 `;
 
 export const RecTagDescriptionContainer = styled.div`

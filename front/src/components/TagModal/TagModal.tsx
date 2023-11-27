@@ -1,25 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as S from "./style";
 import { createPortal } from "react-dom";
 import Thumbnail from "../common/thumbnail/Thumbnail";
 import TagModalSkeleton from "../skeleton/TagModalSkeleton/TagModalSkeleton";
 import { getRecommend } from "../../api/feeds/getRecommend";
 import { postRecommendTags } from "../../api/feeds/postRecommendTags";
+import { RecommendTagsProps, TagModalProps } from "../../types/TagModal.types";
 
-type RecommendTagsProps = {
-  tag: string;
-  description: string;
-};
-
-function TagModal({
-  setIsModalOpen,
-  value,
-  hashArr,
-}: {
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  value: string;
-  hashArr: string[];
-}) {
+function TagModal({ setIsModalOpen, value, hashArr, feedId }: TagModalProps) {
   const [selectedTag, setSelectedTag] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [recommendTags, setRecommendTags] = useState<RecommendTagsProps[]>();
@@ -27,6 +15,7 @@ function TagModal({
   useEffect(() => {
     const postData = {
       content: value,
+      feedId,
     };
     getRecommend(postData)
       .then((res) => {

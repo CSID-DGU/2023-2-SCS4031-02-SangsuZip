@@ -12,6 +12,7 @@ function Write() {
   const [hashArr, setHashArr] = useState<string[]>([]);
   const [title, setTitle] = useState<string | "">("");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [feedId, setFeedId] = useState<string>("");
 
   const onChangeHashTag = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHashtag(e.target.value);
@@ -72,6 +73,7 @@ function Write() {
     };
     writeFeed(writeData).then((res) => {
       if (res.status === 201) {
+        setFeedId(res.data._id);
         setIsModalOpen(true);
       }
     });
@@ -146,6 +148,7 @@ function Write() {
           setIsModalOpen={setIsModalOpen}
           value={value!}
           hashArr={hashArr}
+          feedId={feedId}
         />
       )}
     </Fragment>
