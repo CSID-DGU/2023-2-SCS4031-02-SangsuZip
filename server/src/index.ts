@@ -9,7 +9,7 @@ const port = 4000;
 
 // mongodb 연결
 dotenv.config()
-mongoose.connect(process.env.DATABASE || '');
+mongoose.connect(process.env.DATABASE || ''); 
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error: '));
@@ -21,7 +21,7 @@ db.once('open', () => {
 // middleware
 // cors 설정
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "http://localhost:5173",
   credentials: true
 }
 

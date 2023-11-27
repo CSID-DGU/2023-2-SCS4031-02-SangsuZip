@@ -4,6 +4,7 @@ import User from './User'
 interface Feed extends Document {
     title: string;
     tags: string[];
+    recommendedTags: string[];
     contents: string;
     author: User['_id'];
     createdAt: Date;
@@ -17,6 +18,9 @@ const feedSchema: Schema = new Schema({
     tags: {
         type: Array,
         required: true
+    },
+    recommendedTags: {
+        type: Array,
     },
     contents: {
         type: String
