@@ -4,7 +4,7 @@ import * as S from "./style";
 import Button from "../../components/common/button/Button";
 import theme from "../../styles/theme";
 import TagModal from "../../components/TagModal/TagModal";
-import { writeFeed } from "../../api/feeds/writeFeed";
+import { writeFeed } from "../../api/feeds/writeFeed.api";
 
 function Write() {
   const [value, setValue] = useState<string>();
@@ -101,13 +101,15 @@ function Write() {
             />
             <S.TagContainer>
               <S.EnteredTag className="hashArr"></S.EnteredTag>
-              <S.TagInput
-                placeholder="태그를 입력해주세요."
-                type="text"
-                value={hashtag}
-                onChange={onChangeHashTag}
-                onKeyUp={onKeyUpHandler}
-              />
+              {hashArr.length === 3 ? null : (
+                <S.TagInput
+                  placeholder="태그를 입력해주세요."
+                  type="text"
+                  value={hashtag}
+                  onChange={onChangeHashTag}
+                  onKeyUp={onKeyUpHandler}
+                />
+              )}
             </S.TagContainer>
           </S.TitleContainer>
           <S.ButtonContainer>

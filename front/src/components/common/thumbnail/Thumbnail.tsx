@@ -8,7 +8,7 @@ function Thumbnail({
   contents,
   author,
   createdAt,
-  recommendTags,
+  recommendedTags,
 }: ThumbnailProps) {
   return (
     <S.Container>
@@ -23,7 +23,7 @@ function Thumbnail({
         <S.Content>{contents}</S.Content>
         <S.RecommendTagContainer>
           추천 태그
-          {recommendTags.map((tag: string, index: number) => (
+          {recommendedTags.map((tag: string, index: number) => (
             <S.RecommendTag key={index}>#{tag}</S.RecommendTag>
           ))}
         </S.RecommendTagContainer>

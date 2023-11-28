@@ -4,7 +4,7 @@ import Thumbnail from "../../components/common/thumbnail/Thumbnail";
 import theme from "../../styles/theme";
 import * as S from "./style";
 import SearchIcon from "/assets/icons/SearchIcon.svg";
-import { getFeed } from "../../api/feeds/getFeed";
+import { getFeed } from "../../api/feeds/getFeed.api";
 import { ThumbnailProps } from "../../types/common/Thumbnail.types";
 
 function Home() {
@@ -56,7 +56,7 @@ function Home() {
                 tags={feed.tags}
                 author={feed.author}
                 createdAt={feed.createdAt}
-                recommendTags={["애플", "스티브잡스", "아이패드"]}
+                recommendedTags={feed.recommendedTags.slice(0, 3)}
               />
             ))}
         </S.ThumbnailContainer>
