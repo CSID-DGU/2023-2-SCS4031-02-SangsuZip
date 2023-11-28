@@ -41,3 +41,19 @@ export const getFeeds = async (req: Request, res: Response) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+
+export const deleteFeed = async (req: Request, res: Response) => {
+    const { feedId } = req.params;
+
+    try {
+        const deletedFeed = await Feed.findByIdAndDelete(feedId);
+
+        if (deleteFeed) {
+            res.status(200).json(deleteFeed)
+        } else {
+            res.status(404).json({ msg: "Feed not found" })
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' })
+    }
+}
