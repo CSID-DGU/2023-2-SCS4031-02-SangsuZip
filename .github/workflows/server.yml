@@ -28,25 +28,21 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
           cache-dependency-path: ./server/package-lock.json
-      
-      - name : Set up Env variables
+
+      - name : Docker Build image
         env : 
           DATABASE : ${{ secrets.DATABASE }}
           AWS_LAMBDA_URL : ${{ secrets.AWS_LAMBDA_URL }}
           NEO4J_URI : ${{ secrets.NEO4J_URI }}
           NEO4J_USER : ${{ secrets.NEO4J_USER }}
           NEO4J_PASSWORD : ${{ secrets.NEO4J_PASSWORD }}
-        run: |
+        run : | 
           cd server
           echo "DATABASE=$DATABASE" > .env
           echo "AWS_LAMBDA_URL=$AWS_LAMBDA_URL" > .env
           echo "NEO4J_URI=$NEO4J_URI" > .env
           echo "NEO4J_USER=$NEO4J_USER" > .env
           echo "NEO4J_PASSWORD=$NEO4J_PASSWORD" > .env
-
-      - name : Docker Build image
-        run : | 
-          cd server
           docker build -t ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_IMAGE}} . 
       
       - name: Login to Docker Hub
@@ -78,6 +74,7 @@ jobs:
 
             export NODE_OPTIONS=--max_old_space_size=7000
             sudo docker run -p 4000:4000 \
+              --env-file .env
               --name ${{secrets.DOCKER_IMAGE}} \
               - d ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE }}
       # - name : Set up Docker buildx
