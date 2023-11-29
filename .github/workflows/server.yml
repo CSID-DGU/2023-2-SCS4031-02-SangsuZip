@@ -6,9 +6,9 @@ on:
 
 env:
  AWS_REGION : ap-northeast-2
- DOCKER_USERNAME : ${{secret.DOCKER_USERNAME}}
- DOCKER_PASSWORD : ${{secret.DOCKER_PASSWORD}}
- DOCKER_IMAGE : ${{secret.DOCKER_IMAGE}}
+ DOCKER_USERNAME : ${{secrets.DOCKER_USERNAME}}
+ DOCKER_PASSWORD : ${{secrets.DOCKER_PASSWORD}}
+ DOCKER_IMAGE : ${{secrets.DOCKER_IMAGE}}
 
 jobs:
   ci:
@@ -59,7 +59,7 @@ jobs:
   
       - name : Ec2 Docker Run
         uses : appleboy/ssh-action@master
-        wiht:
+        with:
           host : ${{ secrets.EC2_HOST }}
           username : ${{ secrets.EC2_USERNAME }}
           EC2_KEY : ${{ secrets.EC2_KEY}}
