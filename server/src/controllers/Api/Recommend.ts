@@ -20,8 +20,9 @@ const lambdaService = new LambdaService();
 export const recommendGPT = async (req: Request, res: Response) => {
     try {
         const body = req.body.content;
-        
-        lambdaService.invokeLambda(body)
+        const id = req.body.feedId;
+
+        lambdaService.invokeLambda(body, id)
             .then((result) => {
                 if(result === null) res.status(400).json({ error : 'error'});
                 else res.status(200).json({ 
