@@ -27,6 +27,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+          cache-dependency-path: ./server/package-lock.json
       
       - name : Set up Env variables
         env : 
