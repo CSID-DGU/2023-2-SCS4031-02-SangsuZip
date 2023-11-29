@@ -36,6 +36,7 @@ export class LambdaService {
                 })
             
             const recommendDTO : RecommendDTO[] = [];
+
             
             for( const tag in resbody){
                 if(resbody.hasOwnProperty(tag)){
