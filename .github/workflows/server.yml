@@ -73,9 +73,8 @@ jobs:
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE }}
 
             export NODE_OPTIONS=--max_old_space_size=7000
-            sudo docker run -p 4000:4000 \
-              --name ${{secrets.DOCKER_IMAGE}} \
-              - d ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE }}
+            sudo docker run -d -p 4000:4000 --name ${{secrets.DOCKER_IMAGE}} ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE }}
+               
       # - name : Set up Docker buildx
       #   uses: docker/setup-buildx-action@v2
 
