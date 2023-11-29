@@ -1,7 +1,8 @@
 name : server-deploy
 
-on : 
-  push: ["server-main"]
+on: 
+  push: 
+    branches : ["server-main"]
   paths:
     - "server/**"
 
