@@ -3,8 +3,6 @@ name : server-deploy
 on: 
   push: 
     branches : ["server-main"]
-  paths:
-    - "server/**"
 
 env:
  AWS_REGION : ap-northeast-2
