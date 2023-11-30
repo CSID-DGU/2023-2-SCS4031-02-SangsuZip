@@ -26,8 +26,8 @@
     "install": "^0.13.0",
     "mongodb": "^6.3.0",
     "mongoose": "^8.0.1",
-    "neo4j-driver": "^5.14.0",
     "multer-s3": "^2.10.0",
+    "neo4j-driver": "^5.14.0",
     "npm": "^10.2.3"
   }
 }
