@@ -3,6 +3,7 @@ import express from 'express';
 import { writeFeed } from '../controllers/Api/Feed';
 import { getFeeds } from '../controllers/Api/Feed';
 import { deleteFeed } from '../controllers/Api/Feed';
+import { updateFeed } from '../controllers/Api/Feed';
 
 import { signup } from '../controllers/Api/User';
 
@@ -15,7 +16,8 @@ router.post('/signup', signup)
 
 router.post('/write', writeFeed);
 router.get('/main/feeds/:idx', getFeeds);
-router.delete('/delete/:feedId', deleteFeed)
+router.delete('/delete/:feedId', deleteFeed);
+router.patch('/write/:feedId', updateFeed);
 
 router.post('/recommend/gpt', recommendGPT);
 router.post('/recommend/neo4j', connectTagsNeo4j); 

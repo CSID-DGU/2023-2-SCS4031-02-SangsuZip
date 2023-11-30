@@ -35,7 +35,16 @@ export const getFeeds = async (req: Request, res: Response) => {
 
         const feeds = await Feed.find().skip(sIdx).limit(21)
 
-        res.status(200).json(feeds);
+        const resFeeds = feeds.map(feedInstance => ({
+            title: feedInstance.title,
+            tags: feedInstance.tags,
+            recommendedTags: feedInstance.recommendedTags,
+            contents: feedInstance.contents,
+            author: feedInstance.author.nickname,
+            createdAt: feedInstance.createdAt
+        }))
+
+        res.status(200).json(resFeeds);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -55,5 +64,30 @@ export const deleteFeed = async (req: Request, res: Response) => {
         }
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' })
+    }
+}
+
+export const updateFeed = async (req: Request, res: Response) => {
+    const { feedId } = req.params;
+    const { title, tags, recommendedTags, contents, userId } = req.body;
+
+    try {
+        const feed = await Feed.findById(feedId)
+
+        if (!feed) {
+            res.status(404).json({ error: 'Feed not found' })
+        } else {
+            feed.title = title;
+            feed.tags = tags;
+            feed.recommendedTags = recommendedTags;
+            feed.contents = contents;
+
+            await feed.save();
+
+            res.status(200).json(feed);
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 }
