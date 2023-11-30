@@ -1,4 +1,4 @@
-import { ThumbnailProps } from "../../../types/common/Thumbnail.types";
+import { ThumbnailProps } from "@/types/common/Thumbnail.types";
 import * as S from "./style";
 
 function Thumbnail({

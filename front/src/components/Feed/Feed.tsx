@@ -1,7 +1,6 @@
-import React from "react";
 import * as S from "./style";
-import Button from "../common/button/Button";
-import theme from "../../styles/theme";
+import theme from "@/styles/theme";
+import Button from "@/components/common/button/Button";
 import MDEditor from "@uiw/react-md-editor";
 import ArrowUp from "/assets/icons/ArrowUp.svg";
 import ArrowDown from "/assets/icons/ArrowDown.svg";

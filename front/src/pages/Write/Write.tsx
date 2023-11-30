@@ -1,10 +1,11 @@
 import { Fragment, useCallback, useEffect, useState } from "react";
 import MDEditor from "@uiw/react-md-editor";
 import * as S from "./style";
-import Button from "../../components/common/button/Button";
-import theme from "../../styles/theme";
-import TagModal from "../../components/TagModal/TagModal";
-import { writeFeed } from "../../api/feeds/writeFeed.api";
+import { writeFeed } from "@/api/feeds/writeFeed.api";
+import Tooltip from "@/components/common/tooltip/Tooltip";
+import TagModal from "@/components/TagModal/TagModal";
+import Button from "@/components/common/button/Button";
+import theme from "@/styles/theme";
 
 function Write() {
   const [value, setValue] = useState<string>();
@@ -110,6 +111,13 @@ function Write() {
                   onKeyUp={onKeyUpHandler}
                 />
               )}
+              <Tooltip
+                $width={25}
+                $height={3}
+                top={0}
+                left={0}
+                content="태그를 먼저 입력해주시면 업로드시 더 빠르게 추천이 가능해요."
+              />
             </S.TagContainer>
           </S.TitleContainer>
           <S.ButtonContainer>

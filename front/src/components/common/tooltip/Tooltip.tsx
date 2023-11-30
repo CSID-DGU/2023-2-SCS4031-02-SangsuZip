@@ -1,5 +1,6 @@
+import { TooltipProps } from "@/types/common/Tooltip.types";
 import * as S from "./style";
-import { TooltipProps } from "../../../types/common/Tooltip.types";
+
 import { useEffect, useState } from "react";
 
 function Tooltip({ $width, $height, top, left, content }: TooltipProps) {

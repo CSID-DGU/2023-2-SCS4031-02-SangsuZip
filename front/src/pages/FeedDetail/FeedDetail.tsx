@@ -1,6 +1,5 @@
-import React from "react";
 import * as S from "./style";
-import Feed from "../../components/Feed/Feed";
+import Feed from "@/components/Feed/Feed";
 
 function FeedDetail() {
   return (

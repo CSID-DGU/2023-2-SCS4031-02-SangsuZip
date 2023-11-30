@@ -1,4 +1,3 @@
-import Footer from "./footer/Footer";
 import Header from "./header/Header";
 import { Content, Wrapper } from "./style";
 
