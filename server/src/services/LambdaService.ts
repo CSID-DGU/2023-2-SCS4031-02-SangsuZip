@@ -35,14 +35,15 @@ export class LambdaService {
                     console.log('Feed 저장 에러 발생 : ' + err);
                 })
             
-            const dto : RecommendDTO[] = [];
+            const recommendDTO : RecommendDTO[] = [];
+
             
             for( const tag in resbody){
                 if(resbody.hasOwnProperty(tag)){
-                    dto.push({ tag: tag, description : resbody[tag] });
+                    recommendDTO.push({ tag: tag, description : resbody[tag] });
                 }
             }
-            return dto;
+            return recommendDTO;
 
         } catch (err) {
             console.error(err);
