@@ -19,22 +19,21 @@ export class UserService{
 
             const email = emaildata[0].email;
             
-            // const userExists = await User.findOne({ email});
+            // console.log(username, email)
+            const userExists = await User.findOne({ email });
 
-            // if (userExists) {
-            //     const tmpSav
-            //     // return 
-            // }
-    
-            const newUser = new User({
-                username,
-                email,
-                password : access_token
-            });
-    
-            const savedUser = await newUser.save();
-
-            return savedUser;
+            if (userExists) {
+                return userExists;
+            } else{
+                const newUser = new User({
+                    username,
+                    email,
+                    password : access_token
+                });
+                
+                const savedUser = await newUser.save();
+                return savedUser;
+            }
 
         } catch(error){
             console.log('github 유저 정보 에러 발생');

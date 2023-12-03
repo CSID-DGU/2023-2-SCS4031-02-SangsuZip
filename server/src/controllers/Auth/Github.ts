@@ -33,22 +33,19 @@ export const authGithub = async (req: Request, res: Response) => {
       });
       const userService = new UserService();
 
-      const savedUser = await userService.signUpGithub(access_token);
-
-      // return res.status(201).redirect("http://localhost:5173");
+      const savedUser = await userService.signUpGithub(access_token.access_token);
+      
       return res
         .status(201)
-        .json({
-          email : savedUser.email,
-          userId : savedUser._id
-        })
         .redirect(
-          `http://localhost:5173?data=${encodeURIComponent(
-            access_token.access_token,
-          )}`
-        );
+        `http://localhost:5173?data=${encodeURIComponent(JSON.stringify({
+          access_token : access_token.access_token,
+          userId : savedUser._id,
+          email : savedUser.email
+        }))}`
+      );
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       res.status(500).json({ error: "Internal Server Error" });
     }
   };
