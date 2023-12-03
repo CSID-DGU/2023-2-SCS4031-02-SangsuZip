@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import axios from 'axios';
+import { UserService } from '../../services/UserService';
 
 export const authGithub = async (req: Request, res: Response) => {
     const url = "https://github.com/login/oauth/authorize";
@@ -25,20 +26,27 @@ export const authGithub = async (req: Request, res: Response) => {
       client_secret: process.env.VITE_APP_GITHUB_CLIENT_SECRET,
       code,
     };
+
     try {
       const { data: access_token } = await axios.post(url, body, {
         headers: { Accept: "application/json" },
       });
-  
-      const apiURL = "https://api.github.com";
-      const { data: userdata } = await axios.get(`${apiURL}/user`, {
-        headers: { Authorization: `token ${access_token.access_token}` },
-      });
-      const { data: emaildata } = await axios.get(`${apiURL}/user/emails`, {
-        headers: { Authorization: `token ${access_token.access_token}` },
-      });
-      
-      return res.status(201).redirect("http://localhost:5173");
+      const userService = new UserService();
+
+      const savedUser = await userService.signUpGithub(access_token);
+
+      // return res.status(201).redirect("http://localhost:5173");
+      return res
+        .status(201)
+        .json({
+          email : savedUser.email,
+          userId : savedUser._id
+        })
+        .redirect(
+          `http://localhost:5173?data=${encodeURIComponent(
+            access_token.access_token,
+          )}`
+        );
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Internal Server Error" });
