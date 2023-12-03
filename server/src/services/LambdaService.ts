@@ -14,38 +14,41 @@ export class LambdaService {
                 content
             }
             const lambdaRes = await axios.post(lambdaURL, reqbody, {timeout: 60000} );
-            const tmp = JSON.parse(lambdaRes.data.body.message);
-            console.log(tmp);
-            // const cleantmp = tmp.replace(/\\n|'/g, '');
-            const tmpJsonObj = JSON.parse(tmp.message);
-            console.log(tmpJsonObj);
-            const lambdaBody = JSON.parse(tmpJsonObj);
-            console.log(lambdaBody);
+
+            const parsedObject = JSON.parse(lambdaRes.data.body, (key, value) => {
+                if (typeof value === 'string' && value.startsWith('\\')) {
+                    return JSON.parse(`"${value}"`);
+                }
+                return value;
+            });
+
+            const tmpJsonObj = JSON.parse(parsedObject.message);
             
             
-            const recommendedTags = Object.keys(lambdaBody);
+            const recommendedTags = Object.keys(tmpJsonObj);
 
             const tagsSaveResult = await this.recommendTagsSave(_id, recommendedTags);
 
             const recommendGPTDTO : RecommendGPTDTO[] = [];
 
-            for( const tag in lambdaBody){
-                if(lambdaBody.hasOwnProperty(tag)){
-                    const feed = await Feed.find({ tags : { $in: [tag] }})
-                        .sort({createdAt : -1})    
-                        .limit(3)
-                        .exec()
-                        .then(feeds => {
-                            if(feeds){
-                                recommendGPTDTO.push({ tag: tag, description : lambdaBody[tag], feed : feed });
-                            }
-                        })
-                        .catch(err => {
-                            console.log("tags 관련 피드 가져오는데 오류 발생");
-                        })
-                    
+            for (const tag in tmpJsonObj) {
+                if (tmpJsonObj.hasOwnProperty(tag)) {
+                    try {
+                        const feed = await Feed.find({ tags: { $in: tag } })
+                            .sort({ createdAt: -1 })
+                            .limit(3)
+                            .exec();
+            
+                        if (feed) {
+                            recommendGPTDTO.push({ tag: tag, description: tmpJsonObj[tag], feed: feed });
+                        }
+                    } catch (err) {
+                        console.log("tags 관련 피드 가져오는데 오류 발생");
+                        console.log(err);
+                    }
                 }
             }
+            
             return recommendGPTDTO;
 
         } catch(err){
