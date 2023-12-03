@@ -14,6 +14,7 @@ const color = {
   point3: "#B5C7D3",
   point2: "#658DC6",
   point1: "#0F4C81",
+  github: "#23292d",
 };
 
 const fonts = {
