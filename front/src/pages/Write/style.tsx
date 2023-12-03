@@ -41,6 +41,7 @@ export const Title = styled.input`
 export const TagContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  gap: 1rem;
 `;
 
 export const EnteredTag = styled.div`
