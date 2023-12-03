@@ -19,11 +19,12 @@ export class UserService{
 
             const email = emaildata[0].email;
             
-            const userExists = await User.findOne({ email});
+            // const userExists = await User.findOne({ email});
 
-            if (userExists) {
-                return 1;
-            }
+            // if (userExists) {
+            //     const tmpSav
+            //     // return 
+            // }
     
             const newUser = new User({
                 username,

@@ -35,8 +35,6 @@ export const signupGit = async (req: Request, res : Response) => {
 
         const savedUser = await userService.signUpGithub(access_token);
 
-        if(savedUser === 1) return res.status(400).json({ error: 'Email already exists' });
-
         return res.status(201).json({ 
             userId : savedUser._id,
             email : savedUser.email });
