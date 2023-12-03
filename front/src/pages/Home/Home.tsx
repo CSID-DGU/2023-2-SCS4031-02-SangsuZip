@@ -6,11 +6,40 @@ import * as S from "./style";
 import SearchIcon from "/assets/icons/SearchIcon.svg";
 import { getFeed } from "@/api/feeds/getFeed.api";
 import { ThumbnailProps } from "@/types/common/Thumbnail.types";
+import { useLocation, useNavigate } from "react-router";
+import Cookies from "js-cookie";
+import { auth } from "@/api/auth/auth.api";
+import { useAtom } from "jotai";
+import { UserAtom } from "@/stores/UserStore";
 
 function Home() {
   const [feeds, setFeeds] = useState<ThumbnailProps[]>();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [user, setUser] = useAtom(UserAtom);
 
   useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const data = params.get("data");
+
+    if (data) {
+      Cookies.set("token", data, {
+        expires: new Date(new Date().getTime() + 60 * 60 * 1000),
+      });
+      navigate("/", { replace: true });
+    }
+  }, [location]);
+
+  useEffect(() => {
+    auth().then((res) => {
+      setUser((prev) => {
+        return {
+          ...prev,
+          email: res.emaildata[0].email,
+          nickname: res.userdata.login,
+        };
+      });
+    });
     getFeed().then((res) => {
       setFeeds(res);
     });
