@@ -6,7 +6,7 @@ import * as S from "./style";
 import SearchIcon from "/assets/icons/SearchIcon.svg";
 import { getFeeds } from "@/api/feeds/getFeeds.api";
 import { ThumbnailProps } from "@/types/common/Thumbnail.types";
-import { useLocation, useNavigate } from "react-router";
+import { useLocation } from "react-router";
 import Cookies from "js-cookie";
 import { useSetAtom } from "jotai";
 import { UserAtom } from "@/stores/UserStore";
