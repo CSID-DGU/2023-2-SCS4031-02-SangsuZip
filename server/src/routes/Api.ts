@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { writeFeed } from '../controllers/Api/Feed';
+import { getFeed, writeFeed } from '../controllers/Api/Feed';
 import { getFeeds } from '../controllers/Api/Feed';
 import { deleteFeed } from '../controllers/Api/Feed';
 import { updateFeed } from '../controllers/Api/Feed';
@@ -29,5 +29,6 @@ router.get('/oauth/github', authGithub);
 router.post('/github/signup', signupGit);
 
 router.get('/oauth/github/callback', getGithubAccessToken);
+router.get('/feed/:feedId', getFeed);
 
 export default router;

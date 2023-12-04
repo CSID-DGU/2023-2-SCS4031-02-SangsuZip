@@ -91,3 +91,19 @@ export const updateFeed = async (req: Request, res: Response) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+
+export const getFeed = async (req: Request, res: Response) => {
+    const { feedId } = req.params;
+  
+    try {
+      const feed = await Feed.findById(feedId);
+      if (!feed) {
+        res.status(404).json({ error: "Feed not found" });
+      } else {
+        res.status(200).json(feed);
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  };
