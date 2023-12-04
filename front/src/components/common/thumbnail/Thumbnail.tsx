@@ -1,5 +1,6 @@
 import { ThumbnailProps } from "@/types/common/Thumbnail.types";
 import * as S from "./style";
+import { useNavigate } from "react-router";
 
 function Thumbnail({
   imageURL,
@@ -9,8 +10,13 @@ function Thumbnail({
   author,
   createdAt,
 }: ThumbnailProps) {
+  const navigate = useNavigate();
   return (
-    <S.Container>
+    <S.Container
+      onClick={() =>
+        navigate("/feed/656ccd2738ad1f8955645d2a/656d7eb73a1b9e7ade932f8a")
+      }
+    >
       <S.Image src={imageURL}></S.Image>
       <S.ContentContainer>
         <S.TagContainer>
