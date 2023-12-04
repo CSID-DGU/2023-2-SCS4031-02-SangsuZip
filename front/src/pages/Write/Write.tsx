@@ -70,7 +70,7 @@ function Write() {
       title,
       contents: value!,
       tags: hashArr!,
-      author: "656304f20baa7b3a7f392f9e",
+      author: localStorage.getItem("userId")!,
     };
     writeFeed(writeData).then((res) => {
       if (res.status === 201) {
