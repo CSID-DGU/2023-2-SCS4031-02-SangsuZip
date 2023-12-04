@@ -1,4 +1,7 @@
 import ModalWrapper from "@/components/common/modal/ModalWrapper";
+import { AuthAtom } from "@/stores/AuthStore";
+import { AuthType } from "@/types/auth/auth.types";
+import { useAtom } from "jotai";
 import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
@@ -12,7 +15,7 @@ export default function Auth(
   //false => 로그인한 유저는 출입 불가능한 페이지
 
   function AuthenticationCheck() {
-    const [isAuth, setIsAuth] = useState<boolean>(false);
+    const [auth, setAuth] = useAtom(AuthAtom);
     // 수정해야함.
     const [loading, setLoading] = useState<boolean>(true);
     const navigate = useNavigate();
@@ -28,13 +31,14 @@ export default function Auth(
     };
 
     useEffect(() => {
-      const token = Cookies.get("token");
-      if (token === undefined) {
-        setIsAuth(false);
+      const user = localStorage.getItem("userId");
+
+      if (user === null) {
+        setAuth({ isAuth: false });
       } else {
-        setIsAuth(true);
+        setAuth({ isAuth: true });
       }
-      checkAuth(isAuth);
+      checkAuth(auth.isAuth);
     }, []);
     if (loading) return <div>loading</div>;
     else return <SepecficComponent />;

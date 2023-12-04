@@ -13,6 +13,7 @@ import { Provider } from "jotai";
 function App() {
   const AuthHome = Auth(Home, null);
   const AuthWrite = Auth(Write, true);
+  const AuthFeedDetail = Auth(FeedDetail, null);
 
   return (
     <Provider>
@@ -23,7 +24,10 @@ function App() {
             <Routes>
               <Route path="/" element={<AuthHome />} />
               <Route path="/write" element={<AuthWrite />} />
-              <Route path="/feed/:userId/:feedId" element={<FeedDetail />} />
+              <Route
+                path="/feed/:userId/:feedId"
+                element={<AuthFeedDetail />}
+              />
             </Routes>
           </Layout>
         </BrowserRouter>
