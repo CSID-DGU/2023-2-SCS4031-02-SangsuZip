@@ -1,3 +1,5 @@
+import { FeedType } from "./common/Feed.types";
+
 export type TagModalProps = {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   value: string;
@@ -8,4 +10,5 @@ export type TagModalProps = {
 export type RecommendTagsProps = {
   tag: string;
   description: string;
+  feed: FeedType[];
 };
