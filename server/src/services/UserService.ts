@@ -4,7 +4,7 @@ import User from '../models/User';
 export class UserService{
     async signUpGithub(access_token : string) : Promise<any> {
         try{
-            console.log(access_token);
+            // console.log(access_token);
             const apiURL = "https://api.github.com";
 
             const { data: userdata } = await axios.get(`${apiURL}/user`, {

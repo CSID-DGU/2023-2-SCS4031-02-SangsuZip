@@ -33,6 +33,8 @@ export const authGithub = async (req: Request, res: Response) => {
       });
       const userService = new UserService();
 
+      console.log(access_token);
+      console.log(access_token.access_token);
       const savedUser = await userService.signUpGithub(access_token.access_token);
       
       return res
