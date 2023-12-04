@@ -12,11 +12,7 @@ function Thumbnail({
 }: ThumbnailProps) {
   const navigate = useNavigate();
   return (
-    <S.Container
-      onClick={() =>
-        navigate("/feed/656ccd2738ad1f8955645d2a/656d7eb73a1b9e7ade932f8a")
-      }
-    >
+    <S.Container onClick={() => navigate("/feed/656d7eb73a1b9e7ade932f8a")}>
       <S.Image src={imageURL}></S.Image>
       <S.ContentContainer>
         <S.TagContainer>

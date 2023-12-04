@@ -105,3 +105,9 @@ export const FeedThumbnailContainer = styled.div`
   align-self: normal;
   gap: 5rem;
 `;
+
+export const NoRecommendation = styled.p`
+  margin-top: 2rem;
+  color: ${color.point1};
+  ${theme.fonts.h20Bold}
+`;
