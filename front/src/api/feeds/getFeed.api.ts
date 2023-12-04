@@ -1,6 +1,6 @@
 import { api } from "..";
 
-export const getFeed = async (userId: string, feedId: string) => {
-  const response = await api.get(`/feed/${userId}/${feedId}`);
+export const getFeed = async (feedId: string) => {
+  const response = await api.get(`/feed/${feedId}`);
   return response.data;
 };

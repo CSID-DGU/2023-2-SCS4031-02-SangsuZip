@@ -11,12 +11,11 @@ import { useAtom } from "jotai";
 import { FeedAtom } from "@/stores/FeedStore";
 
 function Feed() {
-  const { userId, feedId } = useParams<{ userId: string; feedId: string }>();
+  const { feedId } = useParams<{ feedId: string }>();
   const [feed, setFeed] = useAtom(FeedAtom);
 
   useEffect(() => {
-    getFeed(userId!, feedId!).then((res) => {
-      console.log(res);
+    getFeed(feedId!).then((res) => {
       setFeed((prev) => ({
         ...prev,
         _id: res._id,
