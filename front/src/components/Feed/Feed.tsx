@@ -4,15 +4,37 @@ import Button from "@/components/common/button/Button";
 import MDEditor from "@uiw/react-md-editor";
 import ArrowUp from "/assets/icons/ArrowUp.svg";
 import ArrowDown from "/assets/icons/ArrowDown.svg";
+import { useEffect } from "react";
+import { useParams } from "react-router";
+import { getFeed } from "@/api/feeds/getFeed.api";
+import { useAtom } from "jotai";
+import { FeedAtom } from "@/stores/FeedStore";
 
 function Feed() {
+  const { userId, feedId } = useParams<{ userId: string; feedId: string }>();
+  const [feed, setFeed] = useAtom(FeedAtom);
+
+  useEffect(() => {
+    getFeed(userId!, feedId!).then((res) => {
+      console.log(res);
+      setFeed((prev) => ({
+        ...prev,
+        _id: res._id,
+        title: res.title,
+        contents: res.contents,
+        tags: res.tags,
+        recommendedTags: res.recommendedTags,
+        createdAt: res.createdAt,
+        author: res.author,
+      }));
+    });
+  }, []);
+
   return (
     <S.Container>
       <S.TopContainer>
         <S.TagContainer>
-          <div># 태그1</div>
-          <div># 태그2</div>
-          <div># 태그3</div>
+          {feed && feed.tags.map((tag, index) => <div key={index}>#{tag}</div>)}
         </S.TagContainer>
         <Button
           $width={3.625}
@@ -29,10 +51,10 @@ function Feed() {
         />
       </S.TopContainer>
       <S.TopContainer>
-        <S.Title>제목</S.Title>
+        <S.Title>{feed.title}</S.Title>
         <S.AuthorContainer>
-          <S.Author>작성자</S.Author>
-          <S.Date>2023.08.24</S.Date>
+          <S.Author>{feed.author}</S.Author>
+          <S.Date>{feed.createdAt.slice(0, 10)}</S.Date>
         </S.AuthorContainer>
       </S.TopContainer>
       <S.Content>
@@ -41,20 +63,15 @@ function Feed() {
             backgroundColor: "white",
             color: "black",
           }}
-          source={`# 안녕하세요
-
-## 잘 되나요?
-
-두 칸씩 띄우는거 확인
-
-`}
+          source={feed.contents}
         />
       </S.Content>
       <S.TagContainer>
-        태그
-        <div># 태그1</div>
-        <div># 태그2</div>
-        <div># 태그3</div>
+        추천 태그
+        {feed &&
+          feed.recommendedTags.map((recommendedTag, index) => (
+            <div key={index}>{recommendedTag}</div>
+          ))}
       </S.TagContainer>
       <S.NeighborContainer>
         <S.NeighborFeed>
