@@ -1,5 +1,6 @@
 import { Fragment, useCallback, useEffect, useState } from "react";
 import MDEditor from "@uiw/react-md-editor";
+import { FileDrop } from "react-file-drop";
 import * as S from "./style";
 import { writeFeed } from "@/api/feeds/writeFeed.api";
 import Tooltip from "@/components/common/tooltip/Tooltip";
@@ -13,6 +14,7 @@ function Write() {
   const [hashArr, setHashArr] = useState<string[]>([]);
   const [title, setTitle] = useState<string | "">("");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isDrag, setIsDrag] = useState<boolean>(false);
   const [feedId, setFeedId] = useState<string>("");
 
   const onChangeHashTag = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,6 +66,26 @@ function Write() {
     },
     [hashArr, hashtag]
   );
+
+  const onDragHandler = (file: File) => {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const headers = { "Content-Type": file.type };
+    if (file.size >= 500000) {
+      alert("파일 사이즈는 5MB 미만까지 업로드 가능합니다.");
+    } else if (
+      file.type == "image/png" ||
+      file.type == "image/jpg" ||
+      file.type == "image/jpeg"
+    ) {
+      // S3에 이미지 업로드 후, url 반환 받기
+      console.log("PNG, JPG, JPEG 업로드중 ㅋ", formData, formData.get("file"));
+    } else {
+      alert("PNG, JPG, JPEG 파일만 업로드 가능합니다.");
+    }
+    setIsDrag(false);
+  };
 
   const onSubmitHandler = () => {
     const writeData = {
@@ -144,13 +166,20 @@ function Write() {
           </S.ButtonContainer>
         </S.TopContainer>
         <S.EditorContainer>
-          <MDEditor
-            data-color-mode="light"
-            height={"100vh"}
-            value={value}
-            placeholder="내용을 입력해주세요!"
-            onChange={setValue}
-          />
+          <FileDrop
+            onDragOver={() => setIsDrag(true)}
+            onDragLeave={() => setIsDrag(false)}
+            onDrop={(file) => onDragHandler(file![0])}
+          >
+            <MDEditor
+              data-color-mode="light"
+              height={"100vh"}
+              value={value}
+              placeholder="내용을 입력해주세요!"
+              onChange={setValue}
+              style={{ backgroundColor: isDrag ? theme.color.gray40 : "white" }}
+            />
+          </FileDrop>
         </S.EditorContainer>
       </S.Container>
       {isModalOpen && (
