@@ -67,6 +67,7 @@ export const ThumbnailContainer = styled.div`
   width: 100%;
   background-color: white;
   border-radius: 5px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
   @media (max-width: 890px) {
     justify-content: center;
