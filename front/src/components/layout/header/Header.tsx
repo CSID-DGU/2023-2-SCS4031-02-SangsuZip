@@ -54,7 +54,7 @@ function Header() {
           $backgroundColor="white"
           $color={theme.color.point1}
           text={user.email ? user.email : ""}
-          onClick={() => {}}
+          onClick={() => navigate(`/${localStorage.getItem("userId")}`)}
         />
         <Button
           $width={5}
