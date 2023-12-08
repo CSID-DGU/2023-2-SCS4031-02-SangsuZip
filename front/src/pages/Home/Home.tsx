@@ -64,16 +64,6 @@ function Home() {
             $hasBorder={true}
             onClick={() => {}}
           />
-          <Button
-            $width={9.625}
-            $height={3.75}
-            $backgroundColor={theme.color.gray40}
-            $borderColor={theme.color.gray40}
-            $color={theme.color.gray70}
-            text="내 게시물"
-            $hasBorder={true}
-            onClick={() => {}}
-          />
         </S.CategoryContainer>
         <S.ThumbnailContainer>
           {searched &&
