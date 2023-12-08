@@ -9,7 +9,7 @@ import { ThumbnailProps } from "@/types/common/Thumbnail.types";
 import { useLocation } from "react-router";
 import Cookies from "js-cookie";
 import { useSetAtom } from "jotai";
-import { UserAtom } from "@/stores/UserStore";
+import { UserAtom } from "@/stores/jotai/UserStore";
 
 function Home() {
   const [feeds, setFeeds] = useState<ThumbnailProps[]>();

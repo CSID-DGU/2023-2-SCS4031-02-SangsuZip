@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router";
 import { getFeed } from "@/api/feeds/getFeed.api";
 import { useAtom } from "jotai";
-import { FeedAtom } from "@/stores/FeedStore";
+import { FeedAtom } from "@/stores/jotai/FeedStore";
 
 function Feed() {
   const { feedId } = useParams<{ feedId: string }>();

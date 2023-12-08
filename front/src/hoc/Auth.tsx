@@ -1,8 +1,5 @@
-import ModalWrapper from "@/components/common/modal/ModalWrapper";
-import { AuthAtom } from "@/stores/AuthStore";
-import { AuthType } from "@/types/auth/auth.types";
+import { AuthAtom } from "@/stores/jotai/AuthStore";
 import { useAtom } from "jotai";
-import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
