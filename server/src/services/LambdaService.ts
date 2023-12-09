@@ -7,12 +7,15 @@ import { CommonResponseDTO } from '../DTO/CommonResponseDTO';
 dotenv.config();
 
 export class LambdaService {
-    async invokeLambda (content : string, _id : string ) : Promise<any> {
+    async invokeLambda (feedId : string ) : Promise<any> {
         const lambdaURL : string = process.env.AWS_LAMBDA_URL || '';
         
         try{
+            const originFeed = await Feed.findById(feedId);
+            const content = originFeed?.contents.replace(/\\n/g, '\n');
+
             const reqbody = {
-                content
+                content : content
             }
             const lambdaRes = await axios.post(lambdaURL, reqbody, {timeout: 60000} );
 
@@ -22,13 +25,13 @@ export class LambdaService {
                 }
                 return value;
             });
-
+            // console.log(parsedObject);
             const tmpJsonObj = JSON.parse(parsedObject.message);
             
             
             const recommendedTags = Object.keys(tmpJsonObj);
 
-            await this.recommendTagsSave(_id, recommendedTags);
+            await this.recommendTagsSave(feedId, recommendedTags);
             
             const recommendGPTDTO : RecommendGPTDTO[] = [];
 
@@ -52,6 +55,7 @@ export class LambdaService {
             return new CommonResponseDTO(recommendGPTDTO, 200, "GPT 태그 추천 완료");
 
         } catch(err){
+            console.log(err);
             return new CommonResponseDTO(undefined, 500, "Lambda GPT 프롬프트 에러 발생");
         }
     }
