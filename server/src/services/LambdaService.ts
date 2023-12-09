@@ -1,7 +1,8 @@
 import dotenv from 'dotenv';
 import axios from 'axios';
-import RecommendGPTDTO from '../models/RecommendGPTDTO';
+import RecommendGPTDTO from '../DTO/RecommendGPTDTO';
 import Feed from '../models/Feed';
+import { CommonResponseDTO } from '../DTO/CommonResponseDTO';
 
 dotenv.config();
 
@@ -27,8 +28,8 @@ export class LambdaService {
             
             const recommendedTags = Object.keys(tmpJsonObj);
 
-            const tagsSaveResult = await this.recommendTagsSave(_id, recommendedTags);
-
+            await this.recommendTagsSave(_id, recommendedTags);
+            
             const recommendGPTDTO : RecommendGPTDTO[] = [];
 
             for (const tag in tmpJsonObj) {
@@ -43,20 +44,16 @@ export class LambdaService {
                             recommendGPTDTO.push({ tag: tag, description: tmpJsonObj[tag], feed: feed });
                         }
                     } catch (err) {
-                        console.log("tags 관련 피드 가져오는데 오류 발생");
-                        console.log(err);
+                        return new CommonResponseDTO(undefined, 500, "추천 태그 가져오는 데 오류 발생");
                     }
                 }
             }
             
-            return recommendGPTDTO;
+            return new CommonResponseDTO(recommendGPTDTO, 200, "GPT 태그 추천 완료");
 
         } catch(err){
-            // console.log('lambda 에러 발생');
-            console.error(err);
+            return new CommonResponseDTO(undefined, 500, "Lambda GPT 프롬프트 에러 발생");
         }
-
-        return null;
     }
 
     async recommendTagsSave(_id : string, recommendedTags : string[]) : Promise<any>{
@@ -76,3 +73,4 @@ export class LambdaService {
         return result;
     }
 }
+

@@ -40,5 +40,4 @@ export class UserService{
             // console.error(error);
         }
     }
-
 }
