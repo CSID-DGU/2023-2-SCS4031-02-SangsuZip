@@ -20,7 +20,6 @@ export const connectTagsNeo4j = async (req: Request, res: Response) => {
 
 export const recommendGPT = async (req: Request, res: Response) => {
     const lambdaService = new LambdaService();
-    const body = req.body.content;
     const id = req.body.feedId;
 
     // const result = await lambdaService.invokeLambda(body, id)
@@ -33,7 +32,7 @@ export const recommendGPT = async (req: Request, res: Response) => {
     //     .catch((error) => {
     //         res.status(500).json({ error: 'Lambda error' });
     //     });
-    const result = await lambdaService.invokeLambda(body, id);
+    const result = await lambdaService.invokeLambda(id);
 
     res.status(result.statusCode).json(result);
 }
