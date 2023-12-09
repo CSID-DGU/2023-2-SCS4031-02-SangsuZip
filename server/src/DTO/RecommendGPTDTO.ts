@@ -1,4 +1,4 @@
-import Feed from './Feed';
+import Feed from '../models/Feed';
 
 
 interface RecommendGPTDTO {

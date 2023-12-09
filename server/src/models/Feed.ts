@@ -9,6 +9,7 @@ interface Feed extends Document {
     author: User['_id'];
     createdAt: Date;
 }
+export type NewCreateFeed = Partial<Feed>;
 
 const feedSchema: Schema = new Schema({
     title: {

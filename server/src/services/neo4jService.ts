@@ -1,5 +1,6 @@
 import neo4j from 'neo4j-driver';
 import dotenv from 'dotenv';
+import { CommonResponseDTO } from '../DTO/CommonResponseDTO';
 
 dotenv.config()
 
@@ -24,8 +25,11 @@ export const connectTags = async (tags: string[], recommendedTags: string[]) => 
                 await session.run(query, { tagName: tag, rTagName: rTag })
             }
         }
+    } catch(err){
+        return new CommonResponseDTO(undefined, 500, "Neo4j 저장하는데 오류 발생");
     } finally {
         session.close();
+        return new CommonResponseDTO({tags, recommendedTags}, 201, "성공적으로 저장 완료");
     }
 }
 
