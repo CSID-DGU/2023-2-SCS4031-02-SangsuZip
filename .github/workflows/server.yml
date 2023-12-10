@@ -38,6 +38,10 @@ jobs:
           NEO4J_PASSWORD : ${{ secrets.NEO4J_PASSWORD }}
           VITE_APP_GITHUB_CLIENT_ID : ${{ secrets.VITE_APP_GITHUB_CLIENT_ID }}
           VITE_APP_GITHUB_CLIENT_SECRET : ${{ secrets.VITE_APP_GITHUB_CLIENT_SECRET }}
+          FRONT_URL : ${{ secrets.FRONT_URL }}
+          IMG_S3_BUCKET_NAME : ${{ secrets.IMG_S3_BUCKET_NAME }}
+          AWS_ACCESS_KEY : ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_SECRET_KEY : ${{ secrets.AWS_SECRET_KEY }}
         run : | 
           cd server
           echo "DATABASE=$DATABASE" >> .env
