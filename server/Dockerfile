@@ -9,7 +9,7 @@ COPY . .
 
 COPY .env .env
 
-ENV NODE_OPTIONS="--max_old_space_size=512"
+ENV NODE_OPTIONS="--max_old_space_size=900"
 
 RUN npm install
 
