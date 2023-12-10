@@ -47,6 +47,10 @@ jobs:
           echo "NEO4J_PASSWORD=$NEO4J_PASSWORD" >> .env
           echo "VITE_APP_GITHUB_CLIENT_ID=$VITE_APP_GITHUB_CLIENT_ID" >> .env
           echo "VITE_APP_GITHUB_CLIENT_SECRET=$VITE_APP_GITHUB_CLIENT_SECRET" >> .env
+          echo "FRONT_URL=$FRONT_URL" >> .env
+          echo "IMG_S3_BUCKET_NAME=$IMG_S3_BUCKET_NAME" >> .env
+          echo "AWS_ACCESS_KEY=$AWS_ACCESS_KEY" >> .env
+          echo "AWS_SECRET_KEY=$AWS_SECRET_KEY" >> .env
           docker build -t ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_IMAGE}} . 
       
       - name: Login to Docker Hub
