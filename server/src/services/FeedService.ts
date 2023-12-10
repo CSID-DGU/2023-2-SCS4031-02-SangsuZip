@@ -1,6 +1,8 @@
+import { Request } from "express";
 import { CommonResponseDTO } from "../DTO/CommonResponseDTO";
 import Feed, { NewCreateFeed } from "../models/Feed";
 import User from "../models/User";
+import {S3File} from '../utils/s3multer';
 
 export const writeFeed = async(writeFeed : NewCreateFeed) => {
 
@@ -53,12 +55,7 @@ export const getFeedAll = async( sIdx : number ) => {
         const feeds = await Feed.find().skip(sIdx).limit(21);
 
         const feedList = feeds.map(feedInstance => ({
-            title: feedInstance.title,
-            tags: feedInstance.tags,
-            recommendedTags: feedInstance.recommendedTags,
-            contents: feedInstance.contents,
-            author: feedInstance.author.nickname,
-            createdAt: feedInstance.createdAt
+            feedId : feedInstance._id
         }));
     
         return new CommonResponseDTO(feedList, 200, "게시글 수정 완료");
@@ -93,6 +90,18 @@ export const getFeedByIdAll = async (userId : string, sIdx : number) => {
         if(feeds) return new CommonResponseDTO(feeds, 200, "내 피드 조회 완료 ");
         else return new CommonResponseDTO(undefined, 404, "내 피드 없음");
     } catch (err){
+        return new CommonResponseDTO(undefined, 500, "서버 에러 ");
+    }
+}
+
+export const uploadFeedImg = async (img : S3File) => {
+    try{
+        return new CommonResponseDTO({
+            imgUrl: img.location,
+        }, 201, "이미지 저장완료");
+
+    } catch(err){
+        console.log(err);
         return new CommonResponseDTO(undefined, 500, "서버 에러 ");
     }
 }

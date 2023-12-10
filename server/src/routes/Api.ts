@@ -1,18 +1,8 @@
 import express from 'express';
 import { getAccessToken, getOauth } from '../controllers/UserController';
-import { createFeed, deleteFeed, getMyFeeds, getFeed, updateFeed, getFeeds } from '../controllers/FeedController';
+import { createFeed, deleteFeed, getMyFeeds, getFeed, updateFeed, getFeeds, uploadImage } from '../controllers/FeedController';
 import { connectTagsNeo4j, recommendGPT } from '../controllers/RecommendController';
-
-// import { getFeed, writeFeed } from '../controllers/FeedController';
-// import { getFeeds } from '../controllers/FeedController';
-// import { deleteFeed } from '../controllers/FeedController';
-// import { updateFeed } from '../controllers/FeedController';
-// import { signup, signupGit } from '../controllers/UserController';
-// import { recommendGPT } from '../controllers/RecommendController';
-// import { connectTagsNeo4j } from '../controllers/RecommendController';
-
-// import { authGithub } from '../controllers/Auth/Github';
-// import { getGithubAccessToken } from '../controllers/Auth/Github';
+import { uploadS3 } from '../utils/s3multer';
 
 const router = express.Router();
 
@@ -31,6 +21,8 @@ router.get('/main/feeds/:userId/:idx',getMyFeeds);
 router.post('/recommend/gpt', recommendGPT);
 router.post('/recommend/neo4j', connectTagsNeo4j); 
 
+
+router.post('/feed/img', uploadS3.single('img'), uploadImage);
 // router.post('/signup', signup)
 
 // router.post('/write', writeFeed);
@@ -47,3 +39,7 @@ router.post('/recommend/neo4j', connectTagsNeo4j);
 
 
 export default router;
+
+function multer(uploadS3: { storage: import("multer").StorageEngine; }) {
+    throw new Error('Function not implemented.');
+}

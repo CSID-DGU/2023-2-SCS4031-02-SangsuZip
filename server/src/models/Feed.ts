@@ -8,8 +8,10 @@ interface Feed extends Document {
     contents: string;
     author: User['_id'];
     createdAt: Date;
+    image : String[];
 }
 export type NewCreateFeed = Partial<Feed>;
+export type Image = Partial<Feed>;
 
 const feedSchema: Schema = new Schema({
     title: {
@@ -30,6 +32,9 @@ const feedSchema: Schema = new Schema({
         type: Types.ObjectId,
         ref: 'User',
         required: true
+    },
+    image : {
+        type : Array
     },
     createdAt: {
         type: Date,
