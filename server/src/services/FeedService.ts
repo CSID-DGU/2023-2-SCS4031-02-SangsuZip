@@ -54,7 +54,12 @@ export const getFeedAll = async( sIdx : number ) => {
         const feeds = await Feed.find().skip(sIdx).limit(21);
 
         const feedList = feeds.map(feedInstance => ({
-            feedId : feedInstance._id
+            feedId : feedInstance._id,
+            tags: feedInstance.tags,
+			title: feedInstance.title,
+			contents: feedInstance.contents,
+			nickname: feedInstance.author.nickname,
+            date : feedInstance.createdAt
         }));
     
         return new CommonResponseDTO(feedList, 200, "게시글 수정 완료");
