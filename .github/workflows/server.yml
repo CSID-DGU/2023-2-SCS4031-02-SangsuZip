@@ -79,8 +79,6 @@ jobs:
             sudo docker rm -f ${{secrets.DOCKER_IMAGE}}
             sudo docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE }}
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE }}
-
-            export NODE_OPTIONS=--max_old_space_size=20000
             sudo docker run -d -p 4000:4000 --name ${{secrets.DOCKER_IMAGE}} ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE }}
                
       # - name : Set up Docker buildx
