@@ -1,4 +1,3 @@
-import { Request } from "express";
 import { CommonResponseDTO } from "../DTO/CommonResponseDTO";
 import Feed, { NewCreateFeed } from "../models/Feed";
 import User from "../models/User";
@@ -77,7 +76,7 @@ export const getFeedById = async (feedId : string) => {
 export const deleteFeedById = async (feedId : string) => {
     try{
         const deleteFeed = await Feed.findByIdAndDelete(feedId);
-        if(deleteFeed) return new CommonResponseDTO({feedId : deleteFeed._id }, 200, "삭제 완료");
+        if(deleteFeed) return new CommonResponseDTO({feedId : feedId}, 200, "삭제 완료");
         else return new CommonResponseDTO(undefined, 404, "삭제할 게시글 조회 불가");
     } catch(err){
         return new CommonResponseDTO(undefined, 500, "서버 에러");

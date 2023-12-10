@@ -40,6 +40,3 @@ router.post('/feed/img', uploadS3.single('img'), uploadImage);
 
 export default router;
 
-function multer(uploadS3: { storage: import("multer").StorageEngine; }) {
-    throw new Error('Function not implemented.');
-}

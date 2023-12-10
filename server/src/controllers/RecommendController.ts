@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { connectTags } from "../services/neo4jService";
+import { Neo4jService } from "../services/neo4jService";
 import { LambdaService } from '../services/LambdaService';
 
 export const connectTagsNeo4j = async (req: Request, res: Response) => {
     const { tags, recommendedTags } = req.body;
-
-    const result = await connectTags(tags, recommendedTags);
+    const neo4jService = new Neo4jService;
+    const result = await neo4jService.connectTags(tags, recommendedTags);
 
     res.status(result.statusCode).json(result);
 

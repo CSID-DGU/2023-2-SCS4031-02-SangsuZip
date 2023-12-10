@@ -3,10 +3,16 @@ import axios from 'axios';
 import RecommendGPTDTO from '../DTO/RecommendGPTDTO';
 import Feed from '../models/Feed';
 import { CommonResponseDTO } from '../DTO/CommonResponseDTO';
+import { eventEmitter, Events } from '../utils/eventEmitter';
 
-dotenv.config();
+import { TagSubscriber } from '../subscribers/TagSubscriber';
 
 export class LambdaService {
+
+    constructor(){
+        dotenv.config();
+    }
+
     async invokeLambda (feedId : string ) : Promise<any> {
         const lambdaURL : string = process.env.AWS_LAMBDA_URL || '';
         
@@ -30,8 +36,21 @@ export class LambdaService {
             
             
             const recommendedTags = Object.keys(tmpJsonObj);
+            
 
-            await this.recommendTagsSave(feedId, recommendedTags);
+            if(originFeed) {
+                const tagSubscriber = new TagSubscriber();
+                tagSubscriber.eventListener();
+
+                const saveBody = {
+                    tags : originFeed.tags,
+                    recommendedTags, 
+                    feedId
+                }
+                // EventDispatcher.dispatch(events.feed.created, saveBody);
+                eventEmitter.emit(Events.TAG_RECOMMENED,saveBody);
+            }
+            // await this.recommendTagsSave(feedId, recommendedTags);
             
             const recommendGPTDTO : RecommendGPTDTO[] = [];
 
