@@ -59,7 +59,8 @@ export const getFeedAll = async( sIdx : number ) => {
 			title: feedInstance.title,
 			contents: feedInstance.contents,
 			nickname: feedInstance.author.nickname,
-            date : feedInstance.createdAt
+            date : feedInstance.createdAt,
+            image : feedInstance.image
         }));
     
         return new CommonResponseDTO(feedList, 200, "게시글 수정 완료");

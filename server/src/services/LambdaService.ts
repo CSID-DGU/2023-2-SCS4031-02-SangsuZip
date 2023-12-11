@@ -38,7 +38,7 @@ export class LambdaService {
             const recommendedTags = Object.keys(tmpJsonObj);
             
 
-            if(originFeed) {
+            if(originFeed && recommendedTags) {
                 const tagSubscriber = new TagSubscriber();
                 tagSubscriber.eventListener();
 
