@@ -33,10 +33,7 @@ function App() {
                 <Route path="/" element={<AuthHome />} />
                 <Route path="/write" element={<AuthWrite />} />
                 <Route path="/:userId" element={<AuthMyPage />} />
-                <Route
-                  path="/feed/:userId/:feedId"
-                  element={<AuthFeedDetail />}
-                />
+                <Route path="/feed" element={<AuthFeedDetail />} />
               </Routes>
             </Layout>
             <ReactQueryDevtools />
