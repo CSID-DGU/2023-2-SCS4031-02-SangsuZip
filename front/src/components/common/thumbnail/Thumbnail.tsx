@@ -3,7 +3,8 @@ import * as S from "./style";
 import { useNavigate } from "react-router";
 
 function Thumbnail({
-  imageURL,
+  feedId,
+  image,
   tags,
   title,
   contents,
@@ -12,10 +13,8 @@ function Thumbnail({
 }: ThumbnailProps) {
   const navigate = useNavigate();
   return (
-    <S.Container
-      onClick={() => navigate("/feed/?feedId=656d7eb73a1b9e7ade932f8a")}
-    >
-      <S.Image src={imageURL}></S.Image>
+    <S.Container onClick={() => navigate(`/feed/?feedId=${feedId}`)}>
+      <S.Image src={image}></S.Image>
       <S.ContentContainer>
         <S.TagContainer>
           {tags.map((tag, index) => (

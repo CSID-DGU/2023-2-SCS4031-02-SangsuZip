@@ -1,5 +1,5 @@
 export type ThumbnailProps = {
-  imageURL?: string;
+  image?: string;
   tags: string[];
   title: string;
   contents: string;
@@ -7,5 +7,5 @@ export type ThumbnailProps = {
   date: string;
   createdAt?: string;
   recommendedTags?: string[];
-  _id: string;
+  feedId: string;
 };

@@ -62,6 +62,7 @@ function Write() {
         setHashtag("");
 
         if (hashArr.length === 2) {
+          // feedId 받아오기
           queryClient.prefetchQuery(
             ["recommendedTags", "656d7eb73a1b9e7ade932f8a"],
             () =>

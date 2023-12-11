@@ -19,6 +19,8 @@ function Feed() {
 
   useEffect(() => {
     getFeed(feedId!).then((res) => {
+      console.log(res);
+
       setFeed((prev) => ({
         ...prev,
         _id: res.data._id,

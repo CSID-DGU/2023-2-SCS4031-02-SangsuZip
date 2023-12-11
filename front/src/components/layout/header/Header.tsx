@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useModal } from "@/hooks/useModal";
 import { UserAtom } from "@/stores/jotai/UserStore";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom } from "jotai";
 import Button from "@/components/common/button/Button";
 import * as S from "./style";
 import theme from "@/styles/theme";
@@ -14,7 +14,6 @@ import Cookies from "js-cookie";
 function Header() {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
-  // const email = useAtomValue(UserAtom).email;
 
   const [auth, setAuth] = useAtom(AuthAtom);
   const [user, setUser] = useAtom(UserAtom);
