@@ -1,4 +1,4 @@
-import { TooltipProps } from "@/types/common/Tooltip.types";
+import { TooltipProps } from "../../../types/common/Tooltip.types";
 import * as S from "./style";
 
 import { useEffect, useState } from "react";

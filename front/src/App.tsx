@@ -6,12 +6,12 @@ import { QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { Provider } from "jotai";
 import { getClient } from "./stores/query/queryClient.ts";
-import Auth from "@/hoc/Auth.tsx";
-import theme from "@/styles/theme.ts";
-import Layout from "@/components/layout/Layout.tsx";
-import Home from "@/pages/Home/Home.tsx";
-import Write from "@/pages/Write/Write.tsx";
-import FeedDetail from "@/pages/FeedDetail/FeedDetail.tsx";
+import Auth from "../src/hoc/Auth.tsx";
+import theme from "../src/styles/theme.ts";
+import Layout from "../src/components/layout/Layout.tsx";
+import Home from "../src/pages/Home/Home.tsx";
+import Write from "../src/pages/Write/Write.tsx";
+import FeedDetail from "../src/pages/FeedDetail/FeedDetail.tsx";
 import MyPage from "./pages/MyPage/MyPage.tsx";
 
 function App() {

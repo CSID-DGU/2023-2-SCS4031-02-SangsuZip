@@ -1,4 +1,4 @@
-import { ButtonProps } from "@/types/common/Button.types";
+import { ButtonProps } from "../../../types/common/Button.types";
 import { Container } from "./style";
 
 function Button({

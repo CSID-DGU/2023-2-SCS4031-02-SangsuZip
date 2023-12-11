@@ -1,4 +1,4 @@
-import { useModal } from "@/hooks/useModal";
+import { useModal } from "../../../hooks/useModal";
 import * as S from "./style";
 import { createPortal } from "react-dom";
 

@@ -1,4 +1,4 @@
-import { ThumbnailProps } from "@/types/common/Thumbnail.types";
+import { ThumbnailProps } from "../../../types/common/Thumbnail.types";
 import * as S from "./style";
 import { useNavigate } from "react-router";
 
@@ -17,7 +17,7 @@ function Thumbnail({
       <S.Image src={image}></S.Image>
       <S.ContentContainer>
         <S.TagContainer>
-          {tags.map((tag, index) => (
+          {tags.map((tag: string, index: number) => (
             <S.Tag key={index}>#{tag}</S.Tag>
           ))}
         </S.TagContainer>

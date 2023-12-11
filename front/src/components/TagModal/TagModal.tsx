@@ -8,7 +8,7 @@ import { postRecommendTags } from "../../api/feeds/postRecommendTags.api";
 import { RecommendTagsProps, TagModalProps } from "../../types/TagModal.types";
 import { useNavigate } from "react-router";
 import { useAtomValue } from "jotai";
-import { RecommendedTagsStore } from "@/stores/jotai/RecommendedStore";
+import { RecommendedTagsStore } from "../../stores/jotai/RecommendedStore";
 
 function TagModal({ setIsModalOpen, hashArr, feedId }: TagModalProps) {
   const [selectedTag, setSelectedTag] = useState<number>(0);

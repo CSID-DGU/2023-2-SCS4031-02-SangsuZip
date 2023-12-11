@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import Button from "@/components/common/button/Button";
-import Thumbnail from "@/components/common/thumbnail/Thumbnail";
-import theme from "@/styles/theme";
+import Button from "../../components/common/button/Button";
+import Thumbnail from "../../components/common/thumbnail/Thumbnail";
+import theme from "../../styles/theme";
 import * as S from "./style";
 import SearchIcon from "/assets/icons/SearchIcon.svg";
-import { getFeeds } from "@/api/feeds/getFeeds.api";
-import { ThumbnailProps } from "@/types/common/Thumbnail.types";
+import { getFeeds } from "../../api/feeds/getFeeds.api";
+import { ThumbnailProps } from "../../types/common/Thumbnail.types";
 import { useLocation } from "react-router";
 import Cookies from "js-cookie";
 import { useSetAtom } from "jotai";
-import { UserAtom } from "@/stores/jotai/UserStore";
+import { UserAtom } from "../../stores/jotai/UserStore";
 import { useQuery } from "react-query";
 
 function Home() {

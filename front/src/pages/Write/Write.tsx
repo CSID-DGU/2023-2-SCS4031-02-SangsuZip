@@ -2,15 +2,15 @@ import { Fragment, useCallback, useEffect, useState } from "react";
 import MDEditor from "@uiw/react-md-editor";
 import { FileDrop } from "react-file-drop";
 import * as S from "./style";
-import { writeFeed } from "@/api/feeds/writeFeed.api";
-import Tooltip from "@/components/common/tooltip/Tooltip";
-import TagModal from "@/components/TagModal/TagModal";
-import Button from "@/components/common/button/Button";
-import theme from "@/styles/theme";
+import { writeFeed } from "../../api/feeds/writeFeed.api";
+import Tooltip from "../../components/common/tooltip/Tooltip";
+import TagModal from "../../components/TagModal/TagModal";
+import Button from "../../components/common/button/Button";
+import theme from "../../styles/theme";
 import { useQueryClient } from "react-query";
-import { getRecommend } from "@/api/feeds/getRecommend.api";
-import { RecommendedTagsStore } from "@/stores/jotai/RecommendedStore";
-import { postImage } from "@/api/feeds/postImage.api";
+import { getRecommend } from "../../api/feeds/getRecommend.api";
+import { RecommendedTagsStore } from "../../stores/jotai/RecommendedStore";
+import { postImage } from "../../api/feeds/postImage.api";
 import { useSetAtom } from "jotai";
 
 function Write() {

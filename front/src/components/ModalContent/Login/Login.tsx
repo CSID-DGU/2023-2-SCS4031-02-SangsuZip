@@ -1,8 +1,8 @@
-import { useModal } from "@/hooks/useModal";
+import { useModal } from "../../../hooks/useModal";
 import * as S from "./style";
-import { authGithub } from "@/api/auth/github.api";
+import { authGithub } from "../../../api/auth/github.api";
 import { useSetAtom } from "jotai";
-import { AuthAtom } from "@/stores/jotai/AuthStore";
+import { AuthAtom } from "../../../stores/jotai/AuthStore";
 
 function Login() {
   const { closeModal } = useModal();

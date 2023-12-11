@@ -1,4 +1,4 @@
-import { AuthAtom } from "@/stores/jotai/AuthStore";
+import { AuthAtom } from "../stores/jotai/AuthStore";
 import { useAtom } from "jotai";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";

@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import { useCallback } from "react";
-import { ModalAtom } from "@/stores/jotai/ModalStore";
+import { ModalAtom } from "../stores/jotai/ModalStore";
 
 export const useModal = () => {
   const [modal, setModal] = useAtom(ModalAtom);

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import * as S from "./style";
 import SearchIcon from "/assets/icons/SearchIcon.svg";
-import Button from "@/components/common/button/Button";
-import Thumbnail from "@/components/common/thumbnail/Thumbnail";
-import theme from "@/styles/theme";
-import { ThumbnailProps } from "@/types/common/Thumbnail.types";
-import { getMyFeed } from "@/api/feeds/getMyFeed.api";
+import Button from "../../components/common/button/Button";
+import Thumbnail from "../../components/common/thumbnail/Thumbnail";
+import theme from "../../styles/theme";
+import { ThumbnailProps } from "../../types/common/Thumbnail.types";
+import { getMyFeed } from "../../api/feeds/getMyFeed.api";
 
 function MyPage() {
   const [feeds, setFeeds] = useState<ThumbnailProps[]>();

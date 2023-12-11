@@ -1,4 +1,4 @@
-import { FeedType } from "@/types/common/Feed.types";
+import { FeedType } from "../../types/common/Feed.types";
 import { atom } from "jotai";
 
 export const FeedAtom = atom<FeedType>({

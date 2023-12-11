@@ -1,14 +1,14 @@
 import * as S from "./style";
-import theme from "@/styles/theme";
-import Button from "@/components/common/button/Button";
+import theme from "../../styles/theme";
+import Button from "../../components/common/button/Button";
 import MDEditor from "@uiw/react-md-editor";
 import ArrowUp from "/assets/icons/ArrowUp.svg";
 import ArrowDown from "/assets/icons/ArrowDown.svg";
 import { useEffect } from "react";
 import { useLocation } from "react-router";
-import { getFeed } from "@/api/feeds/getFeed.api";
+import { getFeed } from "../../api/feeds/getFeed.api";
 import { useAtom } from "jotai";
-import { FeedAtom } from "@/stores/jotai/FeedStore";
+import { FeedAtom } from "../../stores/jotai/FeedStore";
 
 function Feed() {
   const location = useLocation();
