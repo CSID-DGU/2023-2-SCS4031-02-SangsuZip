@@ -7,6 +7,11 @@ import Tooltip from "@/components/common/tooltip/Tooltip";
 import TagModal from "@/components/TagModal/TagModal";
 import Button from "@/components/common/button/Button";
 import theme from "@/styles/theme";
+import { useQueryClient } from "react-query";
+import { getRecommend } from "@/api/feeds/getRecommend.api";
+import { RecommendedTagsStore } from "@/stores/jotai/RecommendedStore";
+import { postImage } from "@/api/feeds/postImage.api";
+import { useSetAtom } from "jotai";
 
 function Write() {
   const [value, setValue] = useState<string>();
@@ -16,6 +21,10 @@ function Write() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isDrag, setIsDrag] = useState<boolean>(false);
   const [feedId, setFeedId] = useState<string>("");
+
+  const setPrefetchData = useSetAtom(RecommendedTagsStore);
+
+  const queryClient = useQueryClient();
 
   const onChangeHashTag = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHashtag(e.target.value);
@@ -51,6 +60,19 @@ function Write() {
         $hashArr?.appendChild($hashTags);
         setHashArr((prev) => [...prev, value]);
         setHashtag("");
+
+        if (hashArr.length === 2) {
+          queryClient.prefetchQuery(
+            ["recommendedTags", "656d7eb73a1b9e7ade932f8a"],
+            () =>
+              getRecommend({
+                tags: [...hashArr, hashtag],
+                feedId: "656d7eb73a1b9e7ade932f8a",
+              }).then((res) => {
+                setPrefetchData(res.data);
+              })
+          );
+        }
       }
       /**
        * 태그 입력 값이 없고, Backspace를 눌렀을 때 마지막 태그 삭제.
@@ -69,18 +91,25 @@ function Write() {
 
   const onDragHandler = (file: File) => {
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append("img", file);
 
-    const headers = { "Content-Type": file.type };
-    if (file.size >= 500000) {
-      alert("파일 사이즈는 5MB 미만까지 업로드 가능합니다.");
+    const headers = {
+      "Content-Type": file.type,
+      Accept: "application/formData",
+    };
+    if (file.size >= 200000) {
+      alert("파일 사이즈는 2MB 미만까지 업로드 가능합니다.");
     } else if (
       file.type == "image/png" ||
       file.type == "image/jpg" ||
       file.type == "image/jpeg"
     ) {
       // S3에 이미지 업로드 후, url 반환 받기
-      console.log("PNG, JPG, JPEG 업로드중 ㅋ", formData, formData.get("file"));
+      postImage(formData, headers).then((res) => {
+        const imgUrl = res.data.imgUrl;
+        const newValue = value + "\n\n ![" + file.name + "](" + imgUrl + ")";
+        setValue(newValue);
+      });
     } else {
       alert("PNG, JPG, JPEG 파일만 업로드 가능합니다.");
     }
@@ -92,11 +121,12 @@ function Write() {
       title,
       contents: value!,
       tags: hashArr!,
-      author: localStorage.getItem("userId")!,
+      userId: localStorage.getItem("userId")!,
+      nickname: localStorage.getItem("email")!,
     };
     writeFeed(writeData).then((res) => {
-      if (res.status === 201) {
-        setFeedId(res.data._id);
+      if (res.statusCode === 200) {
+        setFeedId(res.data.feedId);
         setIsModalOpen(true);
       }
     });
@@ -185,7 +215,6 @@ function Write() {
       {isModalOpen && (
         <TagModal
           setIsModalOpen={setIsModalOpen}
-          value={value!}
           hashArr={hashArr}
           feedId={feedId}
         />
