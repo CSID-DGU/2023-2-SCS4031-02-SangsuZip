@@ -80,8 +80,8 @@ export class LambdaService {
     }
 
     async recommendTagsSave(_id : string, recommendedTags : string[]) : Promise<any>{
-        
-        const result = await Feed.findById(_id)
+        try{
+            const result = await Feed.findById(_id)
             .exec()
             .then(beforeFeed => {
                 if(beforeFeed){
@@ -93,7 +93,11 @@ export class LambdaService {
                 console.log('Feed 저장 에러 발생');
             });
 
-        return result;
+            return result;
+        } catch(err){
+            console.log('Feed를 찾지 못함');
+        }
+
     }
 }
 
