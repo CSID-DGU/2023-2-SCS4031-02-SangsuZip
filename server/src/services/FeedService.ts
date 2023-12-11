@@ -10,7 +10,7 @@ export const prePatchFeed = async (writeFeed : NewCreateFeed) => {
         if(!userExists) return new CommonResponseDTO(undefined, 404, "유저 정보 조회 불가");
 
         const newFeed = new Feed({
-            author : writeFeed.author
+            author : writeFeed.author,
         });
 
         const firstFeed = await newFeed.save();
@@ -22,7 +22,7 @@ export const prePatchFeed = async (writeFeed : NewCreateFeed) => {
         return new CommonResponseDTO(undefined, 500, "서버 에러");
     }
 }
-export const writeFeed = async(writeFeed : NewCreateFeed) => {
+export const writeFeed = async(writeFeed : NewCreateFeed, feedId : string) => {
 
     try{
         const userExists = await User.findById(writeFeed.author);
@@ -34,6 +34,7 @@ export const writeFeed = async(writeFeed : NewCreateFeed) => {
             tags : writeFeed.tags,
             contents : writeFeed.contents,
             author : writeFeed.author,
+            feedId : feedId
         });
     
         const savedFeed = await newFeed.save();

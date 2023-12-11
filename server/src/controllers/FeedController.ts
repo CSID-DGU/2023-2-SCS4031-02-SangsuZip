@@ -11,6 +11,7 @@ export const createFeed = async (req : Request, res : Response) => {
         tags : req.body.tags,
         contents : req.body.contents,
         author : req.body.userId,
+        feedId : req.body.feedId
     }
 
     const result = await feedService.writeFeed(writeFeed);
@@ -66,12 +67,13 @@ export const uploadImage = async (req:Request, res : Response) => {
 }
 
 export const prePatch = async(req:Request, res : Response) => {
+    
     const writeFeed : NewCreateFeed = {
-        author : req.body.userId,
+        author : req.body.userId
     }
 
     const result = await feedService.prePatchFeed(writeFeed);
 
     res.status(result.statusCode).json(result);
-    
+
 }
