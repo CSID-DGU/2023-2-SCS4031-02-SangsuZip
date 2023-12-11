@@ -64,3 +64,14 @@ export const uploadImage = async (req:Request, res : Response) => {
 
     res.status(result.statusCode).json(result);
 }
+
+export const prePatch = async(req:Request, res : Response) => {
+    const writeFeed : NewCreateFeed = {
+        author : req.body.userId,
+    }
+
+    const result = await feedService.prePatchFeed(writeFeed);
+
+    res.status(result.statusCode).json(result);
+    
+}

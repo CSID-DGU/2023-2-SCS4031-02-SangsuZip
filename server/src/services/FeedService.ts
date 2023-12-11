@@ -3,6 +3,25 @@ import Feed, { NewCreateFeed } from "../models/Feed";
 import User from "../models/User";
 import {S3File} from '../utils/s3multer';
 
+export const prePatchFeed = async (writeFeed : NewCreateFeed) => {
+    try{
+        const userExists = await User.findById(writeFeed.author);
+
+        if(!userExists) return new CommonResponseDTO(undefined, 404, "유저 정보 조회 불가");
+
+        const newFeed = new Feed({
+            author : writeFeed.author
+        });
+
+        const firstFeed = await newFeed.save();
+
+        return new CommonResponseDTO({ feedId : firstFeed._id }, 200, "게시글 저장 완료");
+
+    } catch(err){
+        console.log(err);
+        return new CommonResponseDTO(undefined, 500, "서버 에러");
+    }
+}
 export const writeFeed = async(writeFeed : NewCreateFeed) => {
 
     try{

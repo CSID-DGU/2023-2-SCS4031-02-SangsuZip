@@ -1,6 +1,6 @@
 import express from 'express';
 import { getAccessToken, getOauth } from '../controllers/UserController';
-import { createFeed, deleteFeed, getMyFeeds, getFeed, updateFeed, getFeeds, uploadImage } from '../controllers/FeedController';
+import { createFeed, deleteFeed, getMyFeeds, getFeed, updateFeed, getFeeds, uploadImage, prePatch } from '../controllers/FeedController';
 import { connectTagsNeo4j, recommendGPT } from '../controllers/RecommendController';
 import { uploadS3 } from '../utils/s3multer';
 
@@ -9,7 +9,8 @@ const router = express.Router();
 router.get('/oauth/github', getOauth);
 router.get('/oauth/github/callback', getAccessToken);
 
-router.post('/feed',createFeed);
+router.post('/feed', prePatch);
+router.put('/feed',createFeed);
 router.put('/feed', updateFeed);
 router.delete('/feed',deleteFeed);
 router.get('/feed',getFeed);

@@ -16,11 +16,9 @@ export type Image = Partial<Feed>;
 const feedSchema: Schema = new Schema({
     title: {
         type: String,
-        required: true
     },
     tags: {
         type: Array,
-        required: true
     },
     recommendedTags: {
         type: Array,
