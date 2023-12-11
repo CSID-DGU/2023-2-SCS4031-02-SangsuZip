@@ -8,11 +8,13 @@ function Thumbnail({
   title,
   contents,
   author,
-  createdAt,
+  date,
 }: ThumbnailProps) {
   const navigate = useNavigate();
   return (
-    <S.Container onClick={() => navigate("/feed/656d7eb73a1b9e7ade932f8a")}>
+    <S.Container
+      onClick={() => navigate("/feed/?feedId=656d7eb73a1b9e7ade932f8a")}
+    >
       <S.Image src={imageURL}></S.Image>
       <S.ContentContainer>
         <S.TagContainer>
@@ -23,7 +25,7 @@ function Thumbnail({
         <S.Title>{title}</S.Title>
         <S.Content>{contents}</S.Content>
         <S.Author>{author}</S.Author>
-        <S.Date>{createdAt.slice(0, 10)}</S.Date>
+        <S.Date>{date.slice(0, 10)}</S.Date>
       </S.ContentContainer>
     </S.Container>
   );

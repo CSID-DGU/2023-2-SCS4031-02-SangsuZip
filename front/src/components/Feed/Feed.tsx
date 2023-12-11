@@ -5,26 +5,29 @@ import MDEditor from "@uiw/react-md-editor";
 import ArrowUp from "/assets/icons/ArrowUp.svg";
 import ArrowDown from "/assets/icons/ArrowDown.svg";
 import { useEffect } from "react";
-import { useParams } from "react-router";
+import { useLocation } from "react-router";
 import { getFeed } from "@/api/feeds/getFeed.api";
 import { useAtom } from "jotai";
 import { FeedAtom } from "@/stores/jotai/FeedStore";
 
 function Feed() {
-  const { feedId } = useParams<{ feedId: string }>();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+
+  const feedId = queryParams.get("feedId");
   const [feed, setFeed] = useAtom(FeedAtom);
 
   useEffect(() => {
     getFeed(feedId!).then((res) => {
       setFeed((prev) => ({
         ...prev,
-        _id: res._id,
-        title: res.title,
-        contents: res.contents,
-        tags: res.tags,
-        recommendedTags: res.recommendedTags,
-        createdAt: res.createdAt,
-        author: res.author,
+        _id: res.data._id,
+        title: res.data.title,
+        contents: res.data.contents,
+        tags: res.data.tags,
+        recommendedTags: res.data.recommendedTags,
+        createdAt: res.data.createdAt,
+        author: res.data.author,
       }));
     });
   }, []);

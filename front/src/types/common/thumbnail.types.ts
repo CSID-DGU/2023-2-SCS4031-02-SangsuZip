@@ -1,9 +1,11 @@
 export type ThumbnailProps = {
-  imageURL: string;
+  imageURL?: string;
   tags: string[];
   title: string;
   contents: string;
   author: string;
-  createdAt: string;
-  recommendedTags: string[];
+  date: string;
+  createdAt?: string;
+  recommendedTags?: string[];
+  _id: string;
 };
