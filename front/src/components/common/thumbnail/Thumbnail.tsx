@@ -1,4 +1,4 @@
-import { ThumbnailProps } from "../../../types/common/Thumbnail.types";
+import { ThumbnailProps } from "../../../types/common/Thumbnail.types.ts";
 import * as S from "./style";
 import { useNavigate } from "react-router";
 

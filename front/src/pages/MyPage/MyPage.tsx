@@ -4,7 +4,7 @@ import SearchIcon from "/assets/icons/SearchIcon.svg";
 import Button from "../../components/common/button/Button";
 import Thumbnail from "../../components/common/thumbnail/Thumbnail";
 import theme from "../../styles/theme";
-import { ThumbnailProps } from "../../types/common/Thumbnail.types";
+import { ThumbnailProps } from "../../types/common/Thumbnail.types.ts";
 import { getMyFeed } from "../../api/feeds/getMyFeed.api";
 
 function MyPage() {
