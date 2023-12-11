@@ -9,8 +9,8 @@ const router = express.Router();
 router.get('/oauth/github', getOauth);
 router.get('/oauth/github/callback', getAccessToken);
 
-router.post('/feed', preFetch);
-router.put('/feed/prefetch',createFeed);
+// router.post('/feed', preFetch);
+router.post('/feed',createFeed);
 router.put('/feed', updateFeed);
 router.delete('/feed',deleteFeed);
 router.get('/feed',getFeed);

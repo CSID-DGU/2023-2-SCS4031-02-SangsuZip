@@ -22,7 +22,7 @@ export const prePatchFeed = async (writeFeed : NewCreateFeed) => {
         return new CommonResponseDTO(undefined, 500, "서버 에러");
     }
 }
-export const writeFeed = async(writeFeed : NewCreateFeed, feedId : string) => {
+export const writeFeed = async(writeFeed : NewCreateFeed) => {
 
     try{
         const userExists = await User.findById(writeFeed.author);
@@ -34,7 +34,6 @@ export const writeFeed = async(writeFeed : NewCreateFeed, feedId : string) => {
             tags : writeFeed.tags,
             contents : writeFeed.contents,
             author : writeFeed.author,
-            feedId : feedId
         });
     
         const savedFeed = await newFeed.save();

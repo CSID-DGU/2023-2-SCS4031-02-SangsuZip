@@ -13,7 +13,7 @@ export const createFeed = async (req : Request, res : Response) => {
         author : req.body.userId,
     }
 
-    const result = await feedService.writeFeed(writeFeed , req.body.feedId);
+    const result = await feedService.writeFeed(writeFeed);
 
     res.status(result.statusCode).json(result);
 }
