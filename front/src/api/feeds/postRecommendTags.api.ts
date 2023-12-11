@@ -5,5 +5,5 @@ export const postRecommendTags = async (postData: {
   recommendedTags: string[];
 }) => {
   const response = await api.post("/recommend/neo4j", postData);
-  return response;
+  return response.data;
 };
