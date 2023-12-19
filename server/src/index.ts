@@ -21,7 +21,7 @@ db.once('open', () => {
 // middleware
 // cors 설정
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: process.env.FRONT_URL,
   credentials: true
 }
 
