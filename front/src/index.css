@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "PretendardBold";
+  src: url("/assets/fonts/Pretendard-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "PretendardRegular";
+  src: url("/assets/fonts/Pretendard-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "PretendardMedium";
+  src: url("/assets/fonts/Pretendard-Medium.ttf") format("truetype");
+}
+
+body {
+  font-family: "PretendardMedium";
+  margin: 0;
+}
